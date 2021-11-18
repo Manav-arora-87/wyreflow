@@ -1,0 +1,56 @@
+<style>
+    .circle {
+  width: 150px;
+  height: 150px;
+  line-height: 50px;
+  border-radius: 50%;
+  font-size: 40px;
+
+  text-align: center;
+  background: #000
+  border: 1px solid #e74c3c
+
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+ }
+.rectangle {
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 30px;
+    margin-right: 5px;
+    width: 250px;
+    height: 200px;
+    border: 4px solid #000;
+    background-color: white;
+    padding: 10px 10px 10px 100px;
+    position: relative;
+}
+
+
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<div class="center">
+    <div class="rectangle">
+    <input class="circle" value="{{result}}"  type="text" readonly id="total" name="total"><br>
+        <h2>Hiring Details</h2>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>

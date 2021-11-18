@@ -55,7 +55,7 @@ ROOT_URLCONF = 'wyreflowtask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Template'],
+        'DIRS': ['Template',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
