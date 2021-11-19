@@ -21,6 +21,7 @@ urlpatterns = [
     # path('adminweb/', adminweb.site.urls),
 
     path('admin-login/',views.Login),
-    path('admin-checklogin',views.CheckAdminLogin)
+    path('admin-checklogin',views.CheckAdminLogin),
+    path('admin-info',views.Info),
 
 ]
