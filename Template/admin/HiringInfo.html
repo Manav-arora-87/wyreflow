@@ -38,27 +38,27 @@ display:flex;
 <body>
  <div class="rectangle">
     <input class="circle" value="{{todayregistered}}"  type="text" readonly id="todayregistered" ><br>
-        <b class="word">Today Registered</b>
+       <a href="{% url 'admin-hiringview' 1 %}"> <b class="word">Today Registered</b></a>
     </div>
  <div class="rectangle">
     <input class="circle" value="{{totalregisterd}}"  type="text" readonly id="totalregistered" ><br>
-        <b class="word">Total Registered</b>
+       <a href="{% url 'admin-hiringview' 2 %}"><b class="word">Total Registered</b></a>
     </div>
  <div class="rectangle">
     <input  class="circle" value="{{totalempverified}}"  type="text" readonly id="totalempverified"><br>
-     <b class="word">Total emp's document verified</b>
+    <a href="{% url 'admin-hiringview' 3 %}"><b class="word">Total emp's document verified</b></a>
     </div>
  <div class="rectangle">
     <input class="circle" value="{{pendingempverified}}"  type="text" readonly id="pendingempverified" ><br>
-        <b class="word">Pending emp's document verified</b>
+    <a href="{% url 'admin-hiringview' 4 %}"><b class="word">Pending emp's document verified</b></a>
     </div>
  <div class="rectangle">
     <input class="circle" value="{{totalemponboard}}"  type="text" readonly id="totalemponboard" ><br>
-        <b class="word">Total emp's onboard</b>
+    <a href="{% url 'admin-hiringview' 5 %}">    <b class="word">Total emp's onboard</b></a>
     </div>
  <div class="rectangle">
     <input class="circle" value="{{pendingemponboard}}"  type="text" readonly id="pendingemponboard" ><br>
-        <b class="word">Pending emp's onboard</b>
+    <a href="{% url 'admin-hiringview' 6 %}"><b class="word">Pending emp's onboard</b></a>
     </div>
 
 </body>

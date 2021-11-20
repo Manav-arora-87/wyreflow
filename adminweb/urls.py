@@ -20,8 +20,10 @@ from adminweb import  views
 urlpatterns = [
     # path('adminweb/', adminweb.site.urls),
 
-    path('admin-login/',views.Login),
+    path('admin-login/',views.Login,name='admin-login'),
     path('admin-checklogin',views.CheckAdminLogin),
-    path('admin-info',views.Info),
+    path('admin-hiringinfo/',views.HiringInfo),
+    path('admin-dashboard/',views.Admindashboard,name='admin-dashboard'),
+    path('admin-hiringview/<int:id>',views.HiringView,name='admin-hiringview'),
 
 ]

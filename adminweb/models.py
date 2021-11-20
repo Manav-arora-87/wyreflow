@@ -88,7 +88,7 @@ class SurveyLogin(models.Model):
 
 class Surveyinfo(models.Model):
     survey_info_id = models.AutoField(primary_key=True)
-    survey_id = models.IntegerField(blank=True, null=True)
+    survey_id = models.ForeignKey('Surveylogin', models.DO_NOTHING,db_column='survey_id')
     survey_name = models.CharField(max_length=200, blank=True, null=True)
     assign_state = models.IntegerField(blank=True, null=True)
     assign_dist = models.IntegerField(blank=True, null=True)
@@ -107,6 +107,7 @@ class Surveyinfo(models.Model):
     driving_licence_img = models.CharField(max_length=200, blank=True, null=True)
     full_size_img = models.CharField(max_length=200, blank=True, null=True)
     college_id_img = models.CharField(max_length=200, blank=True, null=True)
+    semester_img_status = models.IntegerField(blank=True, null=True)
     tenth_img = models.CharField(max_length=200, blank=True, null=True)
     twelth_img = models.CharField(max_length=200, blank=True, null=True)
     address_img = models.CharField(max_length=200, blank=True, null=True)
@@ -123,7 +124,6 @@ class Surveyinfo(models.Model):
     address_img_status = models.IntegerField(blank=True, null=True)
     vaccination_img_status = models.IntegerField(blank=True, null=True)
     police_verification_img_status = models.IntegerField(blank=True, null=True)
-    semester_img_status = models.IntegerField(blank=True, null=True)
     highqualification = models.CharField(max_length=20, blank=True, null=True)
     survey_bankname = models.CharField(max_length=50, blank=True, null=True)
     survey_account_num = models.CharField(max_length=100, blank=True, null=True)
@@ -138,13 +138,11 @@ class Surveyinfo(models.Model):
     lastlocation_date = models.DateTimeField(blank=True, null=True)
     order_id = models.TextField()
     voucher = models.TextField()
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        managed = False
         db_table = 'surveyinfo'
-
 
 class SurveyorTarget(models.Model):
     sid = models.IntegerField()
