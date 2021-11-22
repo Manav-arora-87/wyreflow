@@ -1,6 +1,6 @@
+import json
 from django.shortcuts import redirect
-from itertools import chain
-
+from django.http import JsonResponse
 # Create your views here.
 import os
 import bcrypt
@@ -9,6 +9,7 @@ from django.shortcuts import render
 from .models import Adminlogins
 from .models import Surveyinfo
 from .models import SurveyLogin
+from .models import College
 from django.db.models import Q
 
 def Login(request):
@@ -84,3 +85,15 @@ def HiringView(request,id):
     except Exception as e:
         print(e)
         return redirect('admin-login')
+
+
+
+def FetchAllClgName(request):
+  try:
+    q=College.objects.all().values_list("id","name")
+    print(q) 
+    return JsonResponse({"data": json.dumps(q)},safe=False)
+    #return JsonResponse(q,safe=False)
+  except Exception as e:
+      print(e)
+      return JsonResponse([],safe=False)

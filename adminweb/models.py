@@ -152,3 +152,13 @@ class SurveyorTarget(models.Model):
     class Meta:
         managed = False
         db_table = 'surveyor_target'
+class College(models.Model):
+    name = models.TextField()
+    status = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 'college'
+
