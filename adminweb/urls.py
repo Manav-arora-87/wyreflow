@@ -26,5 +26,6 @@ urlpatterns = [
     path('admin-dashboard/',views.Admindashboard,name='admin-dashboard'),
     path('admin-hiringview/<int:id>',views.HiringView,name='admin-hiringview'),
     path('fetchallclgname/',views.FetchAllClgName),
+    path('searchingdata/<int:id>',views.SearchingData),
 
 ]

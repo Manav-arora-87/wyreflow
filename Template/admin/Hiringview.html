@@ -23,34 +23,32 @@
     <section class="content-header ">
       <div class="container-fluid ">
         <div class="row mb-2">
-          <div class="col-sm-6 ">
+          <div class="col ">
             <h1 class="text-blue">Order Details</h1>
              <p style="margin-top: 10px; font-size: 17px; font-weight: bold;">Year Data</p> 
           
-                         <form action="" method="POST" enctype="multipart/form-data">
+                         <form action="/searchingdata/{{id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                            
-                           <div style="display: inline-block;">
+                           <div class="mr-2"style="display: inline-block;">
                            <label for="Selectyear">Passing Year</label>
-                           <select class="form-control" name="data" style="width: 159px;" required>
-                           <option selected disabled> -- Select -- </option>
-                           <option value="0">All Data</option>
+                           <select class="form-control" id="year" name="year" style="width: 300px;" required>
+                           <option  value="0"> All Data </option>
                             <option value="1">2021</option>
                             <option value="2">2022</option> 
                           </select>
                          </div>
 
-                          <div style="display: inline-block;">
+                          <div class="mr-2" style="display: inline-block;">
                            <label>Passing College</label>
-                           <select id="clgname" name="clgname" class="form-control" name="data" style="width: 159px;" required>
-                           <option selected disabled> -- Select -- </option>
+                           <select id="clgname" name="clgname" class="form-control"  style="width: 300px;" required>
+                           <option  value="0"> All Data </option>
                           </select>
                           </div>
 
-                          <div style="display: inline-block;">
+                          <div class="mr-2" style="display: inline-block;">
                            <label>Registration Type</label>
-                           <select class="form-control" name="data" style="width: 159px;" required>
-                           <option selected disabled> -- Select -- </option>
-                           <option value="0">All Data</option>
+                           <select class="form-control" id="type" name="type" style="width: 300px;" required>
+                           <option value="0"> All Data </option>
                             <option value="1">Payment Gateway</option>
                             <option value="2">Voucher Code</option> 
                           </select>

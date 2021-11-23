@@ -9,7 +9,7 @@ from django.shortcuts import render
 from .models import Adminlogins
 from .models import Surveyinfo
 from .models import SurveyLogin
-from .models import College
+from adminweb.models import College
 from django.db.models import Q
 
 def Login(request):
@@ -60,27 +60,31 @@ def HiringInfo(request):
         print("Error",e)
         return redirect('admin-login')
     
-def HiringView(request,id):
-    try:
-        
-        result = request.session['ADMIN']
+def hiringview_data(id):
         if id==1:
             temp=Surveyinfo.objects.filter(~Q(order_id__exact="")|~Q(voucher__exact=""))
             t=temp.filter(Q(created_at=datetime.date.today())).select_related('survey_id')
             
-        if id==2:
+        elif id==2:
             t=Surveyinfo.objects.filter(~Q(order_id__exact="")|~Q(voucher__exact="")).select_related('survey_id')
             
-        if id==3:
+        elif id==3:
             t = Surveyinfo.objects.filter(~Q(order_id__exact="")|~Q(voucher__exact="")).filter(Q(profile_img_status=1) & Q(aadhar_front_uri_status=1) & Q(aadhar_back_uri_status=1) & Q(driving_licence_status=1) & Q(full_size_img_status=1) & Q(college_id_img_status=1) & Q(tenth_img_status=1) & Q(twelth_img_status=1) & Q(address_img_status=1) & Q(vaccination_img_status=1) & Q(police_verification_img_status=1) & Q(semester_img_status=1))            
             
-        if id==4:
+        elif id==4:
             t=Surveyinfo.objects.filter(~Q(order_id__exact="")|~Q(voucher__exact="")).filter(~Q(profile_img_status=1) & ~Q(aadhar_front_uri_status=1) & ~Q(aadhar_back_uri_status=1) & ~Q(driving_licence_status=1) & ~Q(full_size_img_status=1) & ~Q(college_id_img_status=1) & ~Q(tenth_img_status=1) & ~Q(twelth_img_status=1) & ~Q(address_img_status=1) & ~Q(vaccination_img_status=1) & ~Q(police_verification_img_status=1) & ~Q(semester_img_status=1))        
-        if id==5:
+        elif id==5:
             t=Surveyinfo.objects.filter(~Q(order_id__exact='') | ~Q(voucher__exact='')).filter(survey_id__in=SurveyLogin.objects.filter(work_status=1))
-        if id==6:
+        elif id==6:
             t=Surveyinfo.objects.filter(~Q(order_id__exact='') | ~Q(voucher__exact='')).filter(survey_id__in=SurveyLogin.objects.filter(work_status=0))
-        return render(request,'admin/HiringView.html',{'t':t})
+        return t
+
+def HiringView(request,id):
+    try:
+        
+        result = request.session['ADMIN']
+        t=hiringview_data(id)
+        return render(request,'admin/HiringView.html',{'t':t,'id':id})
    
     except Exception as e:
         print(e)
@@ -90,10 +94,64 @@ def HiringView(request,id):
 
 def FetchAllClgName(request):
   try:
-    q=College.objects.all().values_list("id","name")
-    print(q) 
-    return JsonResponse({"data": json.dumps(q)},safe=False)
+    q=College.objects.all().values("id","name")
+    #print(q) 
+    return JsonResponse({"data": list(q)},safe=False)
     #return JsonResponse(q,safe=False)
   except Exception as e:
       print(e)
       return JsonResponse([],safe=False)
+
+
+def SearchingData(request,id):
+    try:
+        result = request.session['ADMIN']
+        year=request.POST['year']
+        clgname=request.POST['clgname']
+        type=request.POST['type']
+        if year=='0' and clgname =='0' and type=='0':
+            res=hiringview_data(id)
+        elif clgname =='0' and type=='0':
+            res=hiringview_data(id)
+            res=res.filter(Q(passing_year=year))
+        elif year=='0' and clgname =='0':
+            res=hiringview_data(id)
+            if(type=="1"):
+                res=res.filter(~Q(order_id__exact=''))
+            else:
+                res=res.filter(~Q(voucher__exact=''))    
+        elif year=='0'  and type=='0':
+            res=hiringview_data(id)
+            res=res.filter(Q(college_name=clgname))
+        elif  clgname =='0':
+            res=hiringview_data(id)
+            if(type=="1"):
+                res=res.filter(~Q(order_id__exact='')).filter(Q(passing_year=year))
+            else:
+                res=res.filter(~Q(voucher__exact='')).filter(Q(passing_year=year))
+
+        elif year=='0':
+            res=hiringview_data(id)
+            if(type=="1"):
+                res=res.filter(~Q(order_id__exact='')).filter(Q(college_name=clgname))
+            else:
+                res=res.filter(~Q(voucher__exact='')).filter(Q(college_name=clgname))
+
+
+        elif type=='0':
+            res=hiringview_data(id)
+            res=res.filter(Q(college_name=clgname)).filter(Q(passing_year=year))
+        else:
+            res=hiringview_data(id)
+            if(type=="1"):
+                res=res.filter(~Q(order_id__exact='')).filter(Q(college_name=clgname)).filter(Q(passing_year=year))
+            else:
+                res=res.filter(~Q(voucher__exact='')).filter(Q(college_name=clgname)).filter(Q(passing_year=year))
+
+        #clgname=request.POST['clgname']
+        print("hello",year,clgname,type,id)
+        return render(request,'admin/HiringView.html',{'t':res,'id':id})
+    except Exception as e:
+        print(e)
+        return redirect('admin-login')
+
