@@ -27,7 +27,7 @@
             <h1 class="text-blue">Order Details</h1>
              <p style="margin-top: 10px; font-size: 17px; font-weight: bold;">Year Data</p> 
           
-                         <form action="/searchingdata/{{id}}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                         <form action="/admin-hiringview/{{id}}?param=filter" method="POST" enctype="multipart/form-data">{% csrf_token %}
                            
                            <div class="mr-2"style="display: inline-block;">
                            <label for="Selectyear">Passing Year</label>
@@ -92,6 +92,7 @@
                        <th>Action</th>
                     </tr> 
                   </thead>
+                  
                   {% for i in t %}
                        <tbody>
                   	   <tr>
@@ -119,7 +120,7 @@
                         </a>    
                     </td>                    
                       <td> 
-                      	<a href="#">
+                      	<a href="{% url 'admin-surveyuserview' i.survey_id.survey_id %}">
                       	<div class="btn btn-info btn-sm">View</div>
                       </a>
                         <div class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Location</div>

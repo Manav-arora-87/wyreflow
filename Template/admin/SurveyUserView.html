@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>view</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<style>
+  .top-text{
+    text-align: center;
+    background-color: #588eef;
+    margin-bottom: -1px;
+    border-radius: 12px 11px 1px 1px;
+    font-family: monospace;
+    font-weight: bold;
+  }
+  .aadhar-img{  
+    height: 165px;
+    width: 262px;
+  }
+  .profile{
+    border-radius: 101px;
+    height: 84px;
+    width: 87px;
+    float: right;
+  }
+</style>
+</style>
+</head>
+<body>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Survey User view</h1>
+                <a style="font-size: 15px; font-weight: bold;margin-top: -8px;" onclick="document.getElementById('activestatus-form').submit();">
+                              <div class="btn btn-success" style="margin-bottom: -67px;">Verifed</div>               
+                         
+                        </a>
+                      
+                      
+                         </form>
+                 
+          </div>
+          
+          <div class="col-sm-6">
+                        
+                           <img class="profile" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC" width="50" height="50">
+                         
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+ 
+    <!-- Main content -->
+    <section class="content" style="margin-top: 40px;">
+        
+      <div class="container-fluid">
+        <div class="row">
+  
+             <div class="col-md-6">
+        <h4 class="top-text">Survey Location</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                  {% for i in t %}
+                      
+                <table class="table table-striped">
+                   <tr>
+                    <th>State</th>
+                    <td>{{i.assign_state}}</td>
+                  </tr>
+                <tr>
+                    <th>District</th>
+                    <td>{{i.assign_dist}}</td>
+                  </tr>
+                  <tr>
+                    <th>Block</th>
+                    <td>{{i.assign_block}}</td>
+                  </tr>
+                   <tr>
+                    <th>Village</th>
+                    <td>{{i.assign_village}}</td>
+               </tr>
+               {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+                <div class="col-md-6">
+        <h4 class="top-text">Set Location</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                <form  action="" method="post" enctype="multipart/form-data">
+                 
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">State</label>
+                    </div>
+                    <select class="custom-select"  name="assign_state" id="states" required> 
+                          <option selected disabled>Choose...</option>
+                                    <option value="1">Andaman and Nicobar</option>
+                                    <option value="2">Andhra Pradesh</option>
+                                    <option value="3">Punjab</option>
+                            
+                    </select> 
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Distric</label>
+                    </div>
+                    <select class="custom-select" name="assign_dist" id="distric"> 
+                        <option value="1">Khandwa</option>
+                        <option value="2">Morena</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Block</label>
+                    </div>
+                    <select class="custom-select" name="assign_block" id="block"> 
+                         <option value="">Bhopal</option>
+                         <option>Indore</option>
+                    </select>
+                </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Village</label>
+                    </div>
+                    <select class="custom-select" name="assign_village" id="village">
+                         <option value="">Damoh</option>
+                         <option value="">sagar</option>
+                         <option value="">rahatgad</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+               <button type="submit" value="submit" class="btn btn-primary">Save</button>
+               </div>
+        </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6">
+      <h4 class="top-text">Survey Information</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                <table class="table table-striped">
+                  {% for i in t %}
+
+  <tr>
+    <th>Full Name</th>
+    <td>{{i.survey_name}}</td>
+  </tr>
+  <tr>
+    <th>Address</th>
+    <td>{{i.survey_address}}</td>
+  </tr>
+  <tr>
+    <th>Adhar Number</th>
+    <td>{{i.survey_adhar_number}}</td>
+  </tr>
+  <tr>
+    <th>Hight Qualification</th>
+    <td>{{i.highqualification}}</td>
+  </tr>
+   <tr>
+    <th>10 Percentage</th>
+    <td>{{i.survey_10th_mark}}%</td>
+  </tr>
+   
+   <tr>
+    <th>12 Percentage</th>
+    <td>{{i.survey_12th_mark}}%</td>
+  </tr>
+  <tr>
+    <th>Mobile Number</th>
+    <td>{{i.survey_id.survey_mobile}}</td>
+  </tr>
+  <tr>
+    
+    <th>Joining Date</th>
+    <td>{{i.survey_id.traning_start_date}}</td>
+  </tr>
+  {% endfor %}
+ </table>
+</div>
+
+</div>
+              
+        </div>
+
+            </div><!-- /.card -->
+        </div>
+       {% comment %} <div class="col-md-6">
+        <h4 class="top-text">Aadhar Details</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                <table class="table table-striped">
+                   <tr>
+                    <th>Adhar Number</th>
+                    <td>123456789222</td>
+                  </tr>
+                <tr>
+                    <th style="text-align: center;background: gray;">Front Image</th>
+                 </tr>
+                 <tr>   
+                    <td>
+                           <img class="aadhar-img" src="https://cdn.zeebiz.com/hindi/sites/default/files/styles/zeebiz_850x478/public/2020/08/26/39871-aadhaar.jpg?itok=Q1GeVb8s" width="50" height="50">
+                         
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="text-align: center;background: gray;">Back Image</th>
+                  </tr>
+                  <tr>
+                      <td>
+                               <img class="aadhar-img" src="https://cdn.zeebiz.com/hindi/sites/default/files/styles/zeebiz_850x478/public/2020/08/26/39871-aadhaar.jpg?itok=Q1GeVb8s" width="50" height="50">
+                              
+                      </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+       <div class="col-md-6">
+        <h4 class="top-text">Bank Details</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                <table class="table table-striped">
+                {% for i in t%}
+                   <tr>
+                    <th>Bank Name</th>
+                    <td>{{i.survey_bankname}}</td>
+                  </tr>
+                <tr>
+                    <th>Bank Account Number</th>
+                    <td>{{i.survey_account_num}}</td>
+                  </tr>
+                  <tr>
+                    <th>IFSC Number</th>
+                    <td>{{i.survey_ifsc}}</td>
+                  </tr>
+                  <tr>
+                    <th>Branch</th>
+                    <td>{{i.survey_branch}}</td>
+                  </tr>
+                  <tr>
+                    <th>Holder Name</th>
+                    <td>{{i.survey_holder_name}}</td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+     <!-- ------report table start here--- -->
+      <div class="col-md-6">
+        <h4 class="top-text">Daily Login Report</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12" style="overflow: scroll; height: 430px;">
+                <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">S.no</th>
+      <th scope="col">Date</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Total Survey Time</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    <tr>
+      <th scope="row"><?php echo ++$counter; ?></th>
+      <td>12/12/12</td>
+      <td>12:12am</td>
+      <td>05:12am</td>
+      <td>7 Hour</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+     <!-- ----------report table end here---- -->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <iframe src="https://maps.google.com/maps?q=<?php echo $surveyview->latitude;?>,<?php echo $surveyview->longitude; ?>&output=embed" style="width:100%;height:500px"></iframe>
+      </div>
+    </div>
+                {% comment %} <a href="{{URL::to('/')}}/admin-survey-user" class="btn btn-warning">Back</a> {% endcomment %}
+                <a href="#" class="btn btn-warning">Back</a>
+        </div>
+    </div>
+
+</section>
+{% comment %} <script> 
+        $('#states').change(function(){
+        var cid = $(this).val();  
+        if(cid){
+        $.ajax({
+           type:"get",
+            /* url: "{{ url('/') }}/admin-survey-user-distric/" + cid,*/
+           success:function(res)
+           {       
+                if(res)
+                {
+                    $("#state").empty();
+                    $("#block").empty();
+                    $("#village").empty();
+                    $("#distric").append('<option>Select District</option>');
+                    $.each(res,function(key,value){
+                        $("#distric").append('<option value="'+key+'">'+value+'</option>');
+                    });
+                }
+           }
+
+        });
+        }
+    });
+    $('#distric').change(function(){
+        var sid = $(this).val();
+        if(sid){
+        $.ajax({
+           type:"get",
+           /*url: "{{ url('/') }}/admin-survey-user-block/" + sid,*/
+           success:function(res)
+           {       
+                if(res)
+                {
+                    $("#block").empty();
+                    $("#block").append('<option>Select Block</option>');
+                    $.each(res,function(key,value){
+                        $("#block").append('<option value="'+key+'">'+value+'</option>');
+                    });
+                }
+           }
+
+        });
+        }
+    }); 
+
+       $('#block').change(function(){
+        var vid = $(this).val();
+        if(vid){
+        $.ajax({
+           type:"get",
+            /*url: "{{ url('/') }}/admin-survey-user-village/" + vid,*/
+           success:function(res)
+           {       
+                if(res)
+                {
+                    $("#village").empty();
+                    $("#village").append('<option></option>');
+                    $.each(res,function(key,value){
+                        $("#village").append('<option value="'+key+'">'+value+'</option>');
+                    });
+                }
+           }
+
+        });
+        }
+    }); 
+</script> 
+<script>
+    window.setTimeout(function() {
+    $(".alert").fadeTo(100, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 3000);
+</script> 
+    </section>{% endcomment %}
+
+    <!-- Main content -->
+    {% comment %} <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+       
+            <div class="card">
+              <div class="card-header">
+                <!-- <h3 class="card-title">Create Service</h3> -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body" style="overflow: scroll;">
+                <table class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Survey ID</th>
+                      <th>Order Id</th>
+                      <th>Survey User Name</th>
+                       <th>Mobile Number</th>
+                       <th>Email</th>
+                       <th>Image</th>
+                       <th>Status</th>
+                       <th>Action</th>
+                    </tr> 
+                  </thead>
+                  <?php $counter = 0; ?>
+                  <tbody>
+                  	   <tr>
+                      <td>1</td>
+                       <td>
+                           00112333
+                      </td>
+                      <td>crtd12345   </td>
+                      <td>rohan</td>
+                      <td>1234567895</td>
+                       <td>Rohan@gmail.com</td>
+                       <td>  
+                           <img src="https://i.stack.imgur.com/34AD2.jpg" width="50" height="50">
+                       </td>
+                       <td>
+                        <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">
+                              <div class="btn btn-success">Active</div>
+                        </a>    
+                    </td>                    
+                      <td> 
+                      	<a href="#">
+                      	<div class="btn btn-info btn-sm">View</div>
+                      </a>
+                        <div class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">Location</div>
+                                              
+                      </td>
+                    </tr> 
+<!-- ------------------location model start here- -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Set Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> 
+      <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">State</label>
+                    </div>
+                    <!-- <input type="hidden" name="servern" value=""> -->
+                     <div class="custom-select"> 
+                      sohan
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Distric</label>
+                    </div>
+                    <div class="custom-select"> 
+                     bhopal
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Block</label>
+                    </div>
+                   <div class="custom-select"> 
+                     bhopal
+                  </div>
+                </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Village</label>
+                    </div>
+                   <div class="custom-select"> 
+                     bhopal
+                   </div>
+                </div>
+                <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+      
+    </div>
+  </div>
+</div> {% endcomment %}
+<!-- -----location model end- -->
+  <!-- ---------Daily report start here---- -->
+                 
+                  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->          
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+</div>
+</body>
+</html>

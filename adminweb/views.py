@@ -11,6 +11,8 @@ from .models import Surveyinfo
 from .models import SurveyLogin
 from adminweb.models import College
 from django.db.models import Q
+from django.urls import reverse
+
 
 def Login(request):
     return render(request,'admin/Login.html')
@@ -83,8 +85,16 @@ def HiringView(request,id):
     try:
         
         result = request.session['ADMIN']
-        t=hiringview_data(id)
-        return render(request,'admin/HiringView.html',{'t':t,'id':id})
+        t=[]
+        param=request.GET.get('param',None)
+        # print(param)
+        if param!=None:
+            t=SearchingData(request,id)
+            # print(SearchingData(request,id))
+        else:
+         t=hiringview_data(id)
+        # print(t) 
+        return render(request,'admin/HiringView.html',{'t':t,'id':id,'clgname':0,'year':0,'type':0})
    
     except Exception as e:
         print(e)
@@ -105,7 +115,6 @@ def FetchAllClgName(request):
 
 def SearchingData(request,id):
     try:
-        result = request.session['ADMIN']
         year=request.POST['year']
         clgname=request.POST['clgname']
         type=request.POST['type']
@@ -136,8 +145,6 @@ def SearchingData(request,id):
                 res=res.filter(~Q(order_id__exact='')).filter(Q(college_name=clgname))
             else:
                 res=res.filter(~Q(voucher__exact='')).filter(Q(college_name=clgname))
-
-
         elif type=='0':
             res=hiringview_data(id)
             res=res.filter(Q(college_name=clgname)).filter(Q(passing_year=year))
@@ -148,10 +155,19 @@ def SearchingData(request,id):
             else:
                 res=res.filter(~Q(voucher__exact='')).filter(Q(college_name=clgname)).filter(Q(passing_year=year))
 
-        #clgname=request.POST['clgname']
-        print("hello",year,clgname,type,id)
-        return render(request,'admin/HiringView.html',{'t':res,'id':id})
+        return res
+
     except Exception as e:
         print(e)
-        return redirect('admin-login')
+        return []
 
+def SurveyUserView(request,empid):
+    try:
+        result = request.session['ADMIN']
+        print(empid)
+        t=Surveyinfo.objects.filter(Q(survey_id__exact=empid))
+        print(t)
+        return render(request, "admin/SurveyUserView.html",{'t':t})
+    except  Exception as e:
+        print("Error",e)
+        return redirect('admin-login')
