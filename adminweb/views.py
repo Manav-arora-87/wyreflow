@@ -12,13 +12,21 @@ from .models import SurveyLogin
 from adminweb.models import College
 from django.db.models import Q
 from django.urls import reverse
+from django.views.decorators.cache import cache_control
 
 
 def Login(request):
     return render(request,'admin/Login.html')
 
 
+def Logout(request):
+    request.session.flush()
+    #del request.session['ADMIN']
+    #return redirect("admin-login")
+
+
 def CheckAdminLogin(request):
+    # SurveyLogin.objects.({'hisdf':""})
 
     try:
         emailid = request.POST['emailid']
@@ -32,8 +40,8 @@ def CheckAdminLogin(request):
             return render(request, "admin/Login.html", { 'msg': 'Invalid Userid or Password'})
 
     except Exception as e:
-          print(e)
-
+          #print(e)
+          Logout(request) 
           return render(request, "admin/Login.html", {'msg': 'Server Error'})
 
 def Admindashboard(request):
@@ -43,6 +51,7 @@ def Admindashboard(request):
 
         return render(request, "admin/Dashboard.html", {'result': res})
     except  Exception as e:
+        Logout(request) 
         return redirect('admin-login')
 
 
@@ -60,6 +69,7 @@ def HiringInfo(request):
         return render(request,'admin/HiringInfo.html',{'pendingemponboard':pendingemponboard,'totalemponboard':totalemponboard,'pendingempverified':pendingempverified,'totalempverified':totalempverified,'todayregistered':todayregistered,'totalregisterd':totalregistered})
     except Exception as e:
         print("Error",e)
+        Logout(request) 
         return redirect('admin-login')
     
 def hiringview_data(id):
@@ -86,18 +96,22 @@ def HiringView(request,id):
         
         result = request.session['ADMIN']
         t=[]
+        year=0
+        clgname=0
+        type=0
         param=request.GET.get('param',None)
         # print(param)
         if param!=None:
-            t=SearchingData(request,id)
-            # print(SearchingData(request,id))
+            t,year,clgname,type=SearchingData(request,id)
+            print(year,clgname,type)
         else:
          t=hiringview_data(id)
         # print(t) 
-        return render(request,'admin/HiringView.html',{'t':t,'id':id,'clgname':0,'year':0,'type':0})
+        return render(request,'admin/HiringView.html',{'t':t,'id':id,'clgname':clgname,'year':year,'type':type})
    
     except Exception as e:
         print(e)
+        Logout(request) 
         return redirect('admin-login')
 
 
@@ -155,19 +169,22 @@ def SearchingData(request,id):
             else:
                 res=res.filter(~Q(voucher__exact='')).filter(Q(college_name=clgname)).filter(Q(passing_year=year))
 
-        return res
+        return res,year,clgname,type
 
     except Exception as e:
         print(e)
-        return []
+        return [],0,0,0
 
+
+@cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def SurveyUserView(request,empid):
     try:
         result = request.session['ADMIN']
         print(empid)
-        t=Surveyinfo.objects.filter(Q(survey_id__exact=empid))
+        t=Surveyinfo.objects.filter(Q(survey_id__exact=empid)).extra({'state':'select state_name from state where state_id =surveyinfo.assign_state','district':'select dist_name from district where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist','block':'select block_name from block where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block','village':'select village_name from village where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block and village_id = surveyinfo.assign_village'})
         print(t)
         return render(request, "admin/SurveyUserView.html",{'t':t})
     except  Exception as e:
         print("Error",e)
+        Logout(request) 
         return redirect('admin-login')

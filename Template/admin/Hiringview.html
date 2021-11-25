@@ -32,15 +32,17 @@
                            <div class="mr-2"style="display: inline-block;">
                            <label for="Selectyear">Passing Year</label>
                            <select class="form-control" id="year" name="year" style="width: 300px;" required>
-                           <option  value="0"> All Data </option>
-                            <option value="1">2021</option>
-                            <option value="2">2022</option> 
+                          
+                           <option {% if year == "0" %} selected {% endif %}  value="0"> All Data </option>
+                            <option {% if year == "1" %} selected {% endif %}  value="1">2021</option>
+                            <option  {% if year == "2" %} selected {% endif %}  value="2">2022</option> 
                           </select>
                          </div>
 
                           <div class="mr-2" style="display: inline-block;">
                            <label>Passing College</label>
-                           <select id="clgname" name="clgname" class="form-control"  style="width: 300px;" required>
+                           <input hidden  value="{{clgname}}" id="cid">
+                           <select id="clgname" name="clgname" class="form-control"  style="width: 300px;" required value="1" >
                            <option  value="0"> All Data </option>
                           </select>
                           </div>
@@ -48,9 +50,9 @@
                           <div class="mr-2" style="display: inline-block;">
                            <label>Registration Type</label>
                            <select class="form-control" id="type" name="type" style="width: 300px;" required>
-                           <option value="0"> All Data </option>
-                            <option value="1">Payment Gateway</option>
-                            <option value="2">Voucher Code</option> 
+                           <option {% if type == "0" %} selected {% endif %} value="0"> All Data </option>
+                            <option {% if type == "1" %} selected {% endif %} value="1">Payment Gateway</option>
+                            <option {% if type == "2" %} selected {% endif %} value="2">Voucher Code</option> 
                           </select>
                           </div>
 
@@ -65,7 +67,10 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+{% comment %} {% if year == '0' %}
+<h1>hii</h1>
+{% endif %}
+<h1>hello</h1> {% endcomment %}
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
