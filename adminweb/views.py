@@ -6,17 +6,26 @@ import os
 import bcrypt
 import datetime
 from django.shortcuts import render
-from .models import Adminlogins
+from .models import Adminlogins, SurveyHistory
 from .models import Surveyinfo
 from .models import SurveyLogin
 from adminweb.models import College
 from django.db.models import Q
 from django.urls import reverse
 from django.views.decorators.cache import cache_control
+import math
 
 
 def Login(request):
-    return render(request,'admin/Login.html')
+    try:
+        result = request.session['ADMIN']
+        
+       # print(result)
+        return redirect("admin-dashboard")
+       # return render(request, "admin/Dashboard.html",{'result':res})
+    except Exception as e:
+        print("Error",e)
+        return render(request,'admin/Login.html')
 
 
 def Logout(request):
@@ -103,7 +112,7 @@ def HiringView(request,id):
         # print(param)
         if param!=None:
             t,year,clgname,type=SearchingData(request,id)
-            print(year,clgname,type)
+           # print(year,clgname,type)
         else:
          t=hiringview_data(id)
         # print(t) 
@@ -175,16 +184,59 @@ def SearchingData(request,id):
         print(e)
         return [],0,0,0
 
-
+import datetime
 @cache_control(no_cache=True, must_revalidate=True,no_store=True)
 def SurveyUserView(request,empid):
     try:
         result = request.session['ADMIN']
         print(empid)
         t=Surveyinfo.objects.filter(Q(survey_id__exact=empid)).extra({'state':'select state_name from state where state_id =surveyinfo.assign_state','district':'select dist_name from district where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist','block':'select block_name from block where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block','village':'select village_name from village where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block and village_id = surveyinfo.assign_village'})
-        print(t)
-        return render(request, "admin/SurveyUserView.html",{'t':t})
+        res=SurveyHistory.objects.filter(Q(survey_id__exact=empid))
+        #   time=(end_time-start_time)/1000;
+        #  cal=Math.floor(time/60);
+        #   se=String(Math.floor(time%60));
+        #  m=String(cal%60);
+        #  h=String(Math.floor(cal/60));
+        #  hDisplay = h > 0 ? (h.length>1? h+":":"0"+h+":"): "00:";
+        #  mDisplay = m > 0 ? (m.length>1?m+":":"0"+m+":"): "00:";
+        #  sDisplay = se > 0 ? (se.length>1?se:"0"+se) : "00";
+        #  ntime= hDisplay + mDisplay + sDisplay;
+        # // console.log(ntime)
+        # return ntime;
+        d={}
+        if  res !=None:
+            for index,i in enumerate(res):
+                a=int(i.end_time) 
+                b=int(i.start_time)
+                time=(a-b)/1000
+                print(time)
+                cal=math.floor(time/60)
+                se=str(math.floor(time%60))
+                m=str(cal%60)
+                h=str(math.floor(cal/60))
+                if(len(se)==1):
+                    se="0"+se
+                if(len(m)==1):
+                    m="0"+m
+                if(len(h)==1):
+                    h="0"+h
+                temp=h+":"+m+":"+se 
+                d[index+1]=temp  
+
+
+           
+        print(d)
+        return render(request, "admin/SurveyUserView.html",{'t':t,'res':res,'d':d})
     except  Exception as e:
         print("Error",e)
         Logout(request) 
         return redirect('admin-login')
+
+def ShowDocuments(request):
+    try:
+        result = request.session['ADMIN']
+        return render(request, "admin/ShowDocuments.html")
+    except  Exception as e:
+        print("Error",e)
+        Logout(request) 
+        return redirect('admin-login')    

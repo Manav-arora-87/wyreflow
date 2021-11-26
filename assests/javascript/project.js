@@ -8,7 +8,7 @@ $(document).ready(function(){
        console.log($("#cid").val())
        if(item.id==$("#cid").val())
         {
-            alert("hii")
+        
             $('#clgname').append($('<option>').text(item.name).val(item.id))
             $('#clgname').attr("selected","selected");     
         }

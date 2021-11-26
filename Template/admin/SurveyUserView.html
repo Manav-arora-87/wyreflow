@@ -50,7 +50,12 @@
                               {% comment %} <div class="btn btn-success" style="margin-bottom: -67px;">Verifed</div>                {% endcomment %}
                          
                         </a>
-                      
+                   <a style="font-size: 15px; font-weight: bold;margin-top: -8px;" href="/admin-showdocuments">
+                           
+                           
+                               <div class="btn btn-info" style="margin-bottom: -67px;">Show Documents</div>                                         
+                        </a>
+                   
                       
                          </form>
                  
@@ -82,20 +87,20 @@
                 <table class="table table-striped">
                    <tr>
                     <th>State</th>
-                    <td>{{i.state}}</td>
+                    <td>{% if i.state != None%}{{i.state}}{% endif %}</td>
                     
                   </tr>
                 <tr>
                     <th>District</th>
-                    <td>{{i.district}}</td>
+                    <td> {% if i.district != None%}{{i.district}}{% endif %} </td>
                   </tr>
                   <tr>
                     <th>Block</th>
-                    <td>{{i.block}}</td>
+                    <td>{% if i.block != None%}{{i.block}}{% endif %} </td>
                   </tr>
                    <tr>
                     <th>Village</th>
-                    <td>{{i.village}}</td>
+                    <td>{% if i.village != None%}{{i.village}}{% endif %} </td>
                </tr>
                {% endfor %}
                 </table>
@@ -306,11 +311,13 @@
   <tbody>
    
     <tr>
-      <th scope="row"><?php echo ++$counter; ?></th>
-      <td>12/12/12</td>
-      <td>12:12am</td>
-      <td>05:12am</td>
-      <td>7 Hour</td>
+    {% for i in res %}
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{i.start_date}}</td>
+      <td>{{i.s_time}}</td>
+      <td>{{i.e_time}}</td>
+      <td>{{ d.1 }}</td> 
+      {% endfor %}
     </tr>
 
   </tbody>
@@ -326,7 +333,9 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <iframe src="https://maps.google.com/maps?q=<?php echo $surveyview->latitude;?>,<?php echo $surveyview->longitude; ?>&output=embed" style="width:100%;height:500px"></iframe>
+      {% for i in t %}
+        <iframe src="https://maps.google.com/maps?q={{i.current_lattitude}},{{i.current_longitude}}&output=embed" style="width:100%;height:500px"></iframe>
+      {% endfor %}
       </div>
     </div>
                 {% comment %} <a href="{{URL::to('/')}}/admin-survey-user" class="btn btn-warning">Back</a> {% endcomment %}
