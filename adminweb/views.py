@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.urls import reverse
 from django.views.decorators.cache import cache_control
 import math
+from decouple import config
+
 
 
 def Login(request):
@@ -116,7 +118,7 @@ def HiringView(request,id):
         else:
          t=hiringview_data(id)
         # print(t) 
-        return render(request,'admin/HiringView.html',{'t':t,'id':id,'clgname':clgname,'year':year,'type':type})
+        return render(request,'admin/HiringView.html',{'t':t,'id':id,'clgname':clgname,'year':year,'type':type,'imgurl':config("imgurl")})
    
     except Exception as e:
         print(e)
@@ -220,21 +222,19 @@ def SurveyUserView(request,empid):
                     m="0"+m
                 if(len(h)==1):
                     h="0"+h
-                temp=h+":"+m+":"+se 
-                d[index+1]=temp  
+                temp=h+":"+m+":"+se
+                setattr(i,"total_time",temp) 
 
-
-           
-        print(d)
-        return render(request, "admin/SurveyUserView.html",{'t':t,'res':res,'d':d})
+        return render(request, "admin/SurveyUserView.html",{'id':empid,'t':t,'res':res,'d':d,'imgurl':config("imgurl")})
     except  Exception as e:
         print("Error",e)
         Logout(request) 
         return redirect('admin-login')
 
-def ShowDocuments(request):
+def ShowDocuments(request,id):
     try:
         result = request.session['ADMIN']
+        
         return render(request, "admin/ShowDocuments.html")
     except  Exception as e:
         print("Error",e)

@@ -27,160 +27,147 @@
     float: right;
   }
 </style>
-</style>
+
 </head>
 <body>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section  class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Survey User view</h1>
-                <a style="font-size: 15px; font-weight: bold;margin-top: -8px;" onclick="document.getElementById('activestatus-form').submit();">
-                           
-                           {% for i in t %}
-                           {% if i.survey_id.verified_status == 1 %}
-                              <div class="btn btn-success"style="margin-bottom: -67px;">Verified</div>
-                        {% endif %}      
-                        {% if i.survey_id.verified_status == 0 %}
-                              <div class="btn btn-danger"style="margin-bottom: -67px;">Not Verified</div>
-                        {% endif %}
-                           {% endfor %}
-                              {% comment %} <div class="btn btn-success" style="margin-bottom: -67px;">Verifed</div>                {% endcomment %}
-                         
-                        </a>
-                   <a style="font-size: 15px; font-weight: bold;margin-top: -8px;" onclick="document.getElementById('activestatus-form').submit();">
-                           
-                           
-                               <div class="btn btn-info" style="margin-bottom: -67px;">Show Documents</div>                                         
-                        </a>
-                   
+            <h1>Manav's Old Documents</h1>
+            <div style="font-weight:bold; font-size: 20px;">CRTDSURS32</div> 
+            
+        
                       
-                         </form>
+                      
                  
           </div>
-          
-          <div class="col-sm-6">
-                        
-                           <img class="profile" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADdCAMAAACc/C7aAAAAaVBMVEXDw8MAAADGxsaXl5fJycnMzMxSUlKRkZF1dXV5eXnCwsIFBQWlpaV+fn66urqurq5dXV1sbGxMTEyKiopXV1czMzOcnJwaGhqoqKiEhIQlJSUrKysODg5mZmZHR0ezs7M7OzsVFRU5OTmFwHepAAAC+klEQVR4nO3bi1KjMBSAYXIarIbea2uttVXf/yE36Q0qobrITHP0/2Z2Zt2xDP+GQEDMMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANQ56dCtY+JcZge9zgzsrXvipGc61EtzLO29KbpKLMx9mkPpI83H410XFiblyGFufy7Ph0lHPnSya/aByFuqRv7sSqchUvwV83k4EHFtt6QhcrwOl4GXZdv9VBApq3CdK/w1c9nykNUQ+XK6pG/abin5SFmWy5Z+u6FMP7K6unttt6cKIqflSE4a9tQd/zRtKflI6ZeRw6Y9deFS2ryl5COzUXkzMWoIcZm45bixUkGkfd6PormyyBMZPxkzaVouKIjM7PAwjtPm/XRP4Rse8/hgaoh0djzdbl9XeePJxc7CUBdmHi/REOkPx3Bb2DTlnOwP6L34vNQReZ3szqffRXRa/oJIcetzpJnksS2pj3T5pPrIqmfr6wL9kbZvynWf/8uuPi21Rzrxa4WijCzMW/0j6iKdV/lSZPH5Ges0V3+4flqi+uV77Ql07QmCtkg7GlcumM4uI0/ZC+UjGe67FpVl+qhWGGw/f0pRpIS99aeWjTtV2rdopBleTktNkZkMwvmzMHf20BCaY42FWV3MXFWR2eZY8ezvpY/N8aF8UhuZz84jtV+Iu/d4YfiGu+oHFUX6e43i1LDODs1FfCT9P8+lXN7piZRxNWOS23nTOB7syvsRPZHZ+qKhv2uckMfBLqelmsjLew1/anlpOlbLwT5vSUeks/2rQVG9U5eSyLC0+f+3JE53XToiRT6+OjhjPjRFunz6dVHM9DAtVURG7zW+ZbAfSw2R0mpCHvi1vFMRabctC/1/zdaKisjTTwnaRIYfhCmIdHbQunF/Rl5J8pEizfca37Pxkzr5yNnXHdfNJPGRHNrRvP9D81HqkbnNO5D2W5K//X1XFyK7kuyby3/iHXTp8rcJVmk2/onfCwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALi1f4DsKck70eEzAAAAAElFTkSuQmCC" width="50" height="50">
-                         
-          </div>
-        </div>
+                  </div>
       </div><!-- /.container-fluid -->
     </section>
  
     <!-- Main content -->
-    <section class="content" style="margin-top: 40px;">
+    <section  class="content" style="margin-top: 40px;">
         
+     
       <div class="container-fluid">
         <div class="row">
   
-             <div class="col-md-6">
-        <h4 class="top-text">Survey Location</h4>
+             <div class="col-md-19 ml-4">
+        <h4 class="top-text">Profile Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-12">
-                  {% for i in t %}
+                  <div class="col-md-20">
                       
                 <table class="table table-striped">
                    <tr>
-                    <th>State</th>
-                    <td>{% if i.state != None%}{{i.state}}{% endif %}</td>
+                    <td> <img  src="https://i.stack.imgur.com/34AD2.jpg" width="250" height="250">
+                    
+                    </td>
+                    <td 
+                    style=" vertical-align: middle;"
+                    >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
+                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                       </td>
                     
                   </tr>
-                <tr>
-                    <th>District</th>
-                    <td> {% if i.district != None%}{{i.district}}{% endif %} </td>
-                  </tr>
-                  <tr>
-                    <th>Block</th>
-                    <td>{% if i.block != None%}{{i.block}}{% endif %} </td>
-                  </tr>
-                   <tr>
-                    <th>Village</th>
-                    <td>{% if i.village != None%}{{i.village}}{% endif %} </td>
-               </tr>
-               {% endfor %}
+                 
+                  
+               
                 </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-                 <div class="col-md-6">
-      <h4 class="top-text">Survey Information</h4>
+<!-- /.Adhaar Front image -->
+
+       <div class="col-md-19 ml-4">
+        <h4 class="top-text">Aadhaar Front</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-20">
+                      
                 <table class="table table-striped">
-                  {% for i in t %}
-
-  <tr>
-    <th>Full Name</th>
-    <td>{{i.survey_name}}</td>
-  </tr>
-  <tr>
-    <th>Address</th>
-    <td>{{i.survey_address}}</td>
-  </tr>
-  <tr>
-    <th>Adhar Number</th>
-    <td>{{i.survey_adhar_number}}</td>
-  </tr>
-  <tr>
-    <th>Hight Qualification</th>
-    <td>{{i.highqualification}}</td>
-  </tr>
-   <tr>
-    <th>10 Percentage</th>
-    <td>{{i.survey_10th_mark}}%</td>
-  </tr>
-   
-   <tr>
-    <th>12 Percentage</th>
-    <td>{{i.survey_12th_mark}}%</td>
-  </tr>
-  <tr>
-    <th>Mobile Number</th>
-    <td>{{i.survey_id.survey_mobile}}</td>
-  </tr>
-  <tr>
-    
-    <th>Joining Date</th>
-    <td>{{i.survey_id.traning_start_date}}</td>
-  </tr>
-  {% endfor %}
- </table>
-</div>
-
-</div>
-        </div>
-        </div>
-        </div>
-    
-  
-
-</section>
-
-<!-- -----location model end- -->
-  <!-- ---------Daily report start here---- -->
+                   <tr>
+                    <td> <img  src="https://cdn.zeebiz.com/hindi/sites/default/files/styles/zeebiz_850x478/public/2020/08/26/39871-aadhaar.jpg?itok=Q1GeVb8s" width="250" height="250">
+                    
+                    </td>
+                    <td 
+                    style=" vertical-align: middle;"
+                    >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
+                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                       </td>
+                    
+                  </tr>
                  
                   
-                  </tbody>
+               
                 </table>
               </div>
             </div>
-            <!-- /.card -->          
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </div>
-      <!-- /.container-fluid -->
+
+<!-- Adhar Back image -->
+ <div class="col-md-19 ml-4">
+        <h4 class="top-text">Aadhar Back</h4>
+       <div class="card card-primary card-outline">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-20">
+                      
+                <table class="table table-striped">
+                   <tr>
+                    <td> <img  src="https://cdn.zeebiz.com/hindi/sites/default/files/styles/zeebiz_850x478/public/2020/08/26/39871-aadhaar.jpg?itok=Q1GeVb8s" width="250" height="250">
+                    
+                    </td>
+                    <td 
+                    style=" vertical-align: middle;"
+                    >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
+                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                       </td>
+                    
+                  </tr>
+                 
+                  
+               
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      </div>                
+              
+         </div>
+
+
     </section>
+
+      
 </div>
 </body>
 </html>

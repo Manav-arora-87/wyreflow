@@ -112,7 +112,12 @@
                       <td>{{i.survey_id.survey_mobile}}</td>
                        <td>{{i.survey_id.survey_email}}</td>
                        <td>  
+                       {% if i.survey_profile_image == None %}
                            <img  src="https://i.stack.imgur.com/34AD2.jpg" width="50" height="50">
+                           {% endif %}
+                        {% if i.survey_profile_image != None%}
+                           <img  src="{{imgurl}}{{i.survey_profile_image}}" width="50" height="50">
+                           {% endif %} 
                        </td>
                        <td>
                         <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">

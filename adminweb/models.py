@@ -914,7 +914,7 @@ class SurveyLogin(models.Model):
 
 class Surveyinfo(models.Model):
     survey_info_id = models.AutoField(primary_key=True)
-    survey_id = models.ForeignKey('Surveylogin', models.DO_NOTHING,db_column='survey_id')
+    survey_id = models.ForeignKey('Surveylogin',on_delete=models.CASCADE ,db_column='survey_id')
     survey_name = models.CharField(max_length=200, blank=True, null=True)
     assign_state = models.IntegerField(blank=True, null=True)
     assign_dist = models.IntegerField(blank=True, null=True)
