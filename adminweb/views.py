@@ -231,11 +231,51 @@ def SurveyUserView(request,empid):
         Logout(request) 
         return redirect('admin-login')
 
+
+def checkdoc(doc):
+    try:
+         imgext=['.png','.jpg' , '.jpeg', '.jfif','.pjpeg', '.pjp','.gif']
+         pdfext=['.pdf']
+         doc,fileext= os.path.splitext(doc)
+         if fileext in imgext:
+             return 1 #image file
+         elif fileext in pdfext:
+             return 2 #pdf file
+         else:
+             return 3  #invalid file
+    except:
+        return 3          
+               
+
 def ShowDocuments(request,id):
     try:
         result = request.session['ADMIN']
+        t=Surveyinfo.objects.filter(Q(survey_id=id))
+        for i in t:
+            status_driv=checkdoc(i.driving_licence_img)
+            setattr(i,"dl_type",status_driv)
+            status_driv=checkdoc(i.full_size_img)
+            setattr(i,"fs_type",status_driv)
+            status_driv=checkdoc(i.college_id_img)
+            setattr(i,"ci_type",status_driv)
+            status_driv=checkdoc(i.tenth_img)
+            setattr(i,"th_type",status_driv)
+            status_driv=checkdoc(i.twelth_img)
+            setattr(i,"tw_type",status_driv)
+            status_driv=checkdoc(i.address_img)
+            setattr(i,"add_type",status_driv)
+            status_driv=checkdoc(i.vaccination_img)
+            setattr(i,"vac_type",status_driv)
+            status_driv=checkdoc(i.police_verification_img)
+            setattr(i,"pvr_type",status_driv)
+           
+
+
         
-        return render(request, "admin/ShowDocuments.html")
+        
+        
+        return render(request, "admin/ShowDocuments.html",{'t':t,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        
     except  Exception as e:
         print("Error",e)
         Logout(request) 
