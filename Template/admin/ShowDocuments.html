@@ -33,6 +33,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section  class="content-header">
+      <div type="button" class="btn btn-primary" style="float:right; margin-right:20px;margin-top:20px"> Update</div>
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -53,7 +54,7 @@
       <div class="container-fluid">
         <div class="row">
   
-             <div class="col-md-19 ml-4">
+             <div class="col-md-19 ml-4" style="width:361px;height:200px">
         <h4 class="top-text">Profile Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -67,15 +68,16 @@
                       {% if i.survey_profile_image != None%}<img  src={{profileimgurl}}{{i.survey_profile_image}} width="150" height="150">{% endif %}
                       
                     </td>
+                    {% if i.survey_profile_image != None%}
                     <td style=" vertical-align: middle;" >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input style="align-self:center; height:25px; width:29px; " {% if i.profile_img_status == 1 %} checked {% endif%} type="radio" id="pimg" name="pimg" value="1">
+                      <label style="align-self:center; font-size:20px;" for="html" >Verified</label><br>
+                      <input  style="align-self:center;height:25px; width:29px;" {% if i.profile_img_status == 2 %} checked {% endif%} type="radio" id="pimg" name="pimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" {% if i.profile_img_status == 0 %} checked {% endif%} type="radio" id="pimg" name="pimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                    {% endif %}
                   </tr>
                  
                   
@@ -88,7 +90,7 @@
       </div>
 <!-- /.Adhaar Front image -->
 
-       <div class="col-md-19 ml-4">
+       <div class="col-md-19 ml-4" style="width:361px;height:200px">
         <h4 class="top-text">Aadhaar Front Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -102,17 +104,16 @@
                       {% if i.survey_adhar_front_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="150" height="150">{% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.survey_adhar_front_image != None%}
+                    <td  style=" vertical-align: middle;">
+                      <input style="align-self:center; height:25px; width:29px; " {% if i.aadhar_front_uri_status == 1%} checked {% endif %} type="radio" id="afimg" name="afimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" {% if i.aadhar_front_uri_status == 2%} checked {% endif %} type="radio" id="afimg" name="afimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;"   {% if i.aadhar_front_uri_status == 0%} checked {% endif %} type="radio" id="afimg" name="afimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -125,7 +126,7 @@
       </div>
 
 <!-- Adhar Back image -->
- <div class="col-md-19 ml-4">
+ <div class="col-md-19 ml-4" style="width:361px;height:200px;">
         <h4 class="top-text">Aadhar Back Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -139,17 +140,16 @@
                       {% if i.survey_adhar_back_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_back_image}}" width="150" height="150">{% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.survey_adhar_back_image != None%}
+                    <td  style=" vertical-align: middle;" >
+                      <input style="align-self:center; height:25px; width:29px; "{% if i.aadhar_back_uri_status == 1 %} checked {% endif%} type="radio" id="abimg" name="abimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;"{% if i.aadhar_back_uri_status == 2 %} checked {% endif%} type="radio" id="abimg" name="abimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" {% if i.aadhar_back_uri_status == 0 %} checked {% endif%} type="radio" id="abimg" name="abimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -165,7 +165,7 @@
 
 <!-- Driving Licence image -->
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
         <h4 class="top-text">Driving Licence Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -189,17 +189,16 @@
                      
                     
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.driving_licence_img != None%}
+                    <td  style=" vertical-align: middle;" >
+                      <input style="align-self:center; height:25px; width:29px; "{% if i.driving_licence_status == 1 %} checked {% endif%} type="radio" id="drimg" name="drimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio"{% if i.driving_licence_status == 2 %} checked {% endif%} id="drimg" name="drimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio"{% if i.driving_licence_status == 0 %} checked {% endif%} id="drimg" name="drimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                      {% endif %}
                   </tr>
                  
                   
@@ -215,7 +214,7 @@
 
       <!-- Full Size image -->
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">Full Size Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -238,17 +237,16 @@
                      
                     
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.full_size_img != None%}
+                    <td style=" vertical-align: middle;" >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.full_size_img_status == 1 %} checked {% endif%} id="fsimg" name="fsimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.full_size_img_status == 2 %} checked {% endif%} id="fsimg" name="fsimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" {% if i.full_size_img_status == 0 %} checked {% endif%} id="fsimg" name="fsimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -267,7 +265,7 @@
 <!-- College id image -->
 
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">College ID Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -289,17 +287,16 @@
                       {% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.college_id_img != None%}
+                    <td style=" vertical-align: middle;">
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.college_id_img_status == 1 %} checked {% endif%} id="ciimg" name="ciimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.college_id_img_status == 2 %} checked {% endif%} id="ciimg" name="ciimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio"  {% if i.college_id_img_status == 0 %} checked {% endif%} id="ciimg" name="ciimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -314,7 +311,7 @@
 
 
       <!-- 10th Marksheet image -->
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">10th Marksheet Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -336,17 +333,16 @@
                       {% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.tenth_img != None%}
+                    <td style=" vertical-align: middle;">
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.tenth_img_status == 1 %} checked {% endif%} id="thimg" name="thimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio"   {% if i.tenth_img_status == 2 %} checked {% endif%} id="thimg" name="thimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio"  {% if i.tenth_img_status == 0 %} checked {% endif%} id="thimg" name="thimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -363,7 +359,7 @@
 <!-- 12th marksheet image -->
 
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">12th Marksheet Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -385,17 +381,16 @@
                       {% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.twelth_img != None%}
+                    <td   style=" vertical-align: middle;" >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio"  {% if i.twelth_img_status == 1 %} checked {% endif%} id="twimg" name="twimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.twelth_img_status == 2 %} checked {% endif%}  id="twimg" name="twimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" {% if i.twelth_img_status == 0 %} checked {% endif%} id="twimg" name="twimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -411,7 +406,7 @@
 
 <!-- Address image -->
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">Address Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -433,17 +428,16 @@
                       {% endif %}
                                         
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.address_img != None%}
+                    <td style=" vertical-align: middle;">
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.address_img_status == 1 %} checked {% endif%} id="addimg" name="addimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio"  {% if i.address_img_status == 2 %} checked {% endif%} id="addimg" name="addimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" {% if i.address_img_status == 0 %} checked {% endif%} id="addimg" name="addimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -459,7 +453,7 @@
 
 
 <!-- Vaccination image -->
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4" style="width:361px;height:200px;margin-top: 80px;">
         <h4 class="top-text">Vaccination Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -482,17 +476,16 @@
                      
                     
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.vaccination_img != None%}
+                    <td style=" vertical-align: middle;">
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.vaccination_img_status == 1 %} checked {% endif%} id="vacimg" name="vacimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.vaccination_img_status == 2 %} checked {% endif%} id="vacimg" name="vacimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio" {% if i.vaccination_img_status == 0 %} checked {% endif%} id="vacimg" name="vacimg" value="0">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   
@@ -507,7 +500,7 @@
 
 <!-- Police Verification image -->
 
-      <div class="col-md-19 ml-4">
+      <div class="col-md-19 ml-4 " style="width:361px;height:200px; margin-top: 80px;">
         <h4 class="top-text">Police Verification Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -530,17 +523,16 @@
                       {% endif %}
                      
                     </td>
-                    <td 
-                    style=" vertical-align: middle;"
-                    >
-                      <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
+                    {% if i.police_verification_img != None%}
+                    <td  style=" vertical-align: middle;" >
+                      <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.police_verification_status == 1 %} checked {% endif%} id="pvrimg" name="pvrimg" value="1">
                       <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
-                      <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
-                      <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
+                      <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.vaccination_img_status == 2 %} checked {% endif%} id="pvrimg" name="pvrimg" value="2">
+                      <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                      <input style="align-self:center;height:25px; width:29px;" type="radio"  {% if i.vaccination_img_status == 0 %} checked {% endif%} id="pvrimg" name="pvrimg" value="3">
                       <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
-                    
+                       {% endif %}
                   </tr>
                  
                   

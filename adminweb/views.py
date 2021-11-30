@@ -194,17 +194,7 @@ def SurveyUserView(request,empid):
         print(empid)
         t=Surveyinfo.objects.filter(Q(survey_id__exact=empid)).extra({'state':'select state_name from state where state_id =surveyinfo.assign_state','district':'select dist_name from district where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist','block':'select block_name from block where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block','village':'select village_name from village where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block and village_id = surveyinfo.assign_village'})
         res=SurveyHistory.objects.filter(Q(survey_id__exact=empid))
-        #   time=(end_time-start_time)/1000;
-        #  cal=Math.floor(time/60);
-        #   se=String(Math.floor(time%60));
-        #  m=String(cal%60);
-        #  h=String(Math.floor(cal/60));
-        #  hDisplay = h > 0 ? (h.length>1? h+":":"0"+h+":"): "00:";
-        #  mDisplay = m > 0 ? (m.length>1?m+":":"0"+m+":"): "00:";
-        #  sDisplay = se > 0 ? (se.length>1?se:"0"+se) : "00";
-        #  ntime= hDisplay + mDisplay + sDisplay;
-        # // console.log(ntime)
-        # return ntime;
+       
         d={}
         if  res !=None:
             for index,i in enumerate(res):

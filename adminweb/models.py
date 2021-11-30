@@ -939,7 +939,7 @@ class Surveyinfo(models.Model):
     vaccination_img = models.CharField(max_length=200, blank=True, null=True)
     police_verification_img = models.CharField(max_length=200, blank=True, null=True)
     profile_img_status = models.IntegerField(blank=True, null=True)
-    aadhar_front_uri_status = models.IntegerField(blank=True, null=True)
+    aadhar_front_uri_status = models.IntegerField(blank=True, null=True) #0->pending 1:verfified 2:rejected
     aadhar_back_uri_status = models.IntegerField(blank=True, null=True)
     driving_licence_status = models.IntegerField(blank=True, null=True)
     full_size_img_status = models.IntegerField(blank=True, null=True)
