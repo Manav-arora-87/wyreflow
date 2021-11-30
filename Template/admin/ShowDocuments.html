@@ -63,17 +63,17 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.survey_profile_image == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
-                      {% if i.survey_profile_image != None%}<img  src={{profileimgurl}}{{i.survey_profile_image}} width="250" height="250">{% endif %}
+                      {% if i.survey_profile_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
+                      {% if i.survey_profile_image != None%}<img  src={{profileimgurl}}{{i.survey_profile_image}} width="150" height="150">{% endif %}
                       
                     </td>
                     <td style=" vertical-align: middle;" >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -98,19 +98,19 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.survey_adhar_front_image == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
-                      {% if i.survey_adhar_front_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="250" height="250">{% endif %}
+                      {% if i.survey_adhar_front_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
+                      {% if i.survey_adhar_front_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="150" height="150">{% endif %}
                      
                     </td>
                     <td 
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -135,19 +135,19 @@
                 <table class="table table-striped">
                    <tr>
                     <td>
-                      {% if i.survey_adhar_back_image == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
-                      {% if i.survey_adhar_back_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_back_image}}" width="250" height="250">{% endif %}
+                      {% if i.survey_adhar_back_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
+                      {% if i.survey_adhar_back_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_back_image}}" width="150" height="150">{% endif %}
                      
                     </td>
                     <td 
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -176,13 +176,13 @@
                    <tr>
                     <td> 
           
-                      {% if i.driving_licence_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.driving_licence_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.driving_licence_img != None%}
-                      {% if i.dl_type == 1 %} <img  src="{{url}}drivinglicence/{{i.driving_licence_img}}" width="250" height="250">
+                      {% if i.dl_type == 1 %} <img  src="{{url}}drivinglicence/{{i.driving_licence_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.dl_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.dl_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.dl_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.dl_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                      
                       {% endif %}
@@ -193,11 +193,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -225,13 +225,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.full_size_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.full_size_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.full_size_img != None%}
-                      {% if i.fs_type == 1 %} <img  src="{{url}}fullsizephoto/{{i.full_size_img}}" width="250" height="250">
+                      {% if i.fs_type == 1 %} <img  src="{{url}}fullsizephoto/{{i.full_size_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.fs_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.fs_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.fs_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.fs_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -242,11 +242,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -277,13 +277,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.college_id_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.college_id_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.college_id_img != None%}
-                      {% if i.ci_type == 1 %} <img  src="{{url}}college_id/{{i.college_id_img}}" width="250" height="250">
+                      {% if i.ci_type == 1 %} <img  src="{{url}}college_id/{{i.college_id_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.ci_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.ci_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.ci_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.ci_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -293,11 +293,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -324,13 +324,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.tenth_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.tenth_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.tenth_img != None%}
-                      {% if i.th_type == 1 %} <img  src="{{url}}10th/{{i.tenth_img}}" width="250" height="250">
+                      {% if i.th_type == 1 %} <img  src="{{url}}10th/{{i.tenth_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.th_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.th_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.th_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.th_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -340,11 +340,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -373,13 +373,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.twelth_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.twelth_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.twelth_img != None%}
-                      {% if i.tw_type == 1 %} <img  src="{{url}}12th/{{i.twelth_img}}" width="250" height="250">
+                      {% if i.tw_type == 1 %} <img  src="{{url}}12th/{{i.twelth_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.tw_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.tw_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.tw_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.tw_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -389,11 +389,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -421,13 +421,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.address_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.address_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.address_img != None%}
-                      {% if i.add_type == 1 %} <img  src="{{url}}address/{{i.address_img}}" width="250" height="250">
+                      {% if i.add_type == 1 %} <img  src="{{url}}address/{{i.address_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.add_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.add_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.add_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.add_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
 
                       {% endif %}
@@ -437,11 +437,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -469,13 +469,13 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.vaccination_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.vaccination_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.vaccination_img != None%}
-                      {% if i.vac_type == 1 %} <img  src="{{url}}vaccination/{{i.vaccination_img}}" width="250" height="250">
+                      {% if i.vac_type == 1 %} <img  src="{{url}}vaccination/{{i.vaccination_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.vac_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.vac_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.vac_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.vac_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -486,11 +486,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
@@ -517,14 +517,14 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.police_verification_img == None%}<img  src="/static/noimg.png" width="250" height="250">{% endif %}
+                      {% if i.police_verification_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.police_verification_img != None%}
                       
-                      {% if i.pvr_type == 1 %} <img  src="{{url}}policeverfications/{{i.police_verification_img}}" width="250" height="250">
+                      {% if i.pvr_type == 1 %} <img  src="{{url}}policeverfications/{{i.police_verification_img}}" width="150" height="150">
                       {% endif %}
-                      {% if i.pvr_type == 2 %}  <img  src="/static/pdficon.png" width="250" height="250">
+                      {% if i.pvr_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
-                      {% if i.pvr_type == 3 %}   <img  src="/static/invalid.png" width="250" height="250">
+                      {% if i.pvr_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
                       {% endif %}
                       
                       {% endif %}
@@ -534,11 +534,11 @@
                     style=" vertical-align: middle;"
                     >
                       <input style="align-self:center; height:25px; width:29px; " type="radio" id="html" name="imgaction" value="0">
-                      <label style="align-self:center; font-size:25px;" for="html">Verified</label><br>
+                      <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
                       <input  style="align-self:center;height:25px; width:29px;" type="radio" id="css" name="imgaction" value="1">
-                      <label style="align-self:center;font-size:25px;" for="css">Not-Verified</label><br>
+                      <label style="align-self:center;font-size:20px;" for="css">Not-Verified</label><br>
                       <input style="align-self:center;height:25px; width:29px;" type="radio" id="javascript" name="imgaction" value="2">
-                      <label style="align-self:center;font-size:25px;" for="javascript">Pending</label>
+                      <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
                        </td>
                     
                   </tr>
