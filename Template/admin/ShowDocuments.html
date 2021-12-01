@@ -7,7 +7,8 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<style>
+
+  <style>
   .top-text{
     text-align: center;
     background-color: #588eef;
@@ -33,7 +34,10 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section  class="content-header">
-      <div type="button" class="btn btn-primary" style="float:right; margin-right:20px;margin-top:20px"> Update</div>
+      <form action="/admin-documentstatus" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        <input type='hidden' id='surveyid' name='surveyid' value= '{{id}}' >
+      <button type="submit" class="btn btn-primary" style="float:right; margin-right:20px;margin-top:20px"> Update</button>
+     
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -65,7 +69,9 @@
                    <tr>
                     <td> 
                       {% if i.survey_profile_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
-                      {% if i.survey_profile_image != None%}<img  src={{profileimgurl}}{{i.survey_profile_image}} width="150" height="150">{% endif %}
+                      {% if i.survey_profile_image != None%}
+                        <img  src={{profileimgurl}}{{i.survey_profile_image}} data-toggle="modal" data-target="#exampleModal" onclick="showimg('{{profileimgurl}}{{i.survey_profile_image}}')" width="150" height="150">
+                    {% endif %}
                       
                     </td>
                     {% if i.survey_profile_image != None%}
@@ -101,7 +107,7 @@
                    <tr>
                     <td> 
                       {% if i.survey_adhar_front_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
-                      {% if i.survey_adhar_front_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="150" height="150">{% endif %}
+                      {% if i.survey_adhar_front_image != None%}<a data-toggle="modal" data-target="#exampleModal"><img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="150" height="150"></a>{% endif %}
                      
                     </td>
                     {% if i.survey_adhar_front_image != None%}
@@ -558,7 +564,45 @@
          {% endfor %}
     </section>
 
-      
+  </form>    
 </div>
+          <!-- ------------------location model start here- -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+          
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+  
+
+                  <div>
+
+                    <img id="oldpic"   style="margin-top:10px; height:150px;"><br><br>
+                </div>
+              
+                          <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                         </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!-- -----location model end- -->
 </body>
 </html>
+
+
+<script>
+
+ 
+  
+function showimg(imgurl){
+  console.log(imgurl)
+
+  $('#oldpic').attr('src',imgurl)
+
+
+}
+
+</script>  

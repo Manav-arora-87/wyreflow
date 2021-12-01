@@ -41,6 +41,7 @@ def CheckAdminLogin(request):
 
     try:
         emailid = request.POST['emailid']
+        
         password = request.POST['password']
         admin=Adminlogins.objects.get(email=emailid, user_status=1)
         # Adminlogins.ob
@@ -264,9 +265,44 @@ def ShowDocuments(request,id):
         
         
         
-        return render(request, "admin/ShowDocuments.html",{'t':t,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        return render(request, "admin/ShowDocuments.html",{'id':id,'t':t,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
         
     except  Exception as e:
         print("Error",e)
         Logout(request) 
-        return redirect('admin-login')    
+        return redirect('admin-login')  
+
+
+def DocumentStatus(request):
+    try:
+        result = request.session['ADMIN']
+        surveyid = request.POST.get('surveyid')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('afimg')
+       # pimg = request.POST.get('abimg')
+       # pimg = request.POST.get('drimg')
+       # pimg = request.POST.get('fsimg')
+       # pimg = request.POST.get('ciimg')
+       # pimg = request.POST.get('thimg')
+       # pimg = request.POST.get('twimg')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('pimg')
+       # pimg = request.POST.get('pimg')
+        
+    
+           
+
+
+        
+        
+        
+        return render(request, "admin/ShowDocuments.html",{'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        
+    except  Exception as e:
+        print("Error  ",e)
+        Logout(request) 
+        return redirect('admin-login')  
+
