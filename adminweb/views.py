@@ -273,24 +273,40 @@ def ShowDocuments(request,id):
         return redirect('admin-login')  
 
 
-def DocumentStatus(request):
+def DocumentStatus(request,id):
     try:
         result = request.session['ADMIN']
-        surveyid = request.POST.get('surveyid')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('afimg')
-       # pimg = request.POST.get('abimg')
-       # pimg = request.POST.get('drimg')
-       # pimg = request.POST.get('fsimg')
-       # pimg = request.POST.get('ciimg')
-       # pimg = request.POST.get('thimg')
-       # pimg = request.POST.get('twimg')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('pimg')
-       # pimg = request.POST.get('pimg')
+        
+        pimg = int(request.POST.get('pimg'))
+        afimg = request.POST.get('afimg')
+        abimg = request.POST.get('abimg')
+        drimg = request.POST.get('drimg')
+        fsimg = request.POST.get('fsimg')
+        ciimg = request.POST.get('ciimg')
+        thimg = request.POST.get('thimg')
+        twimg = request.POST.get('twimg')
+        addimg = request.POST.get('addimg')
+        vacimg = request.POST.get('vacimg')
+        pvrimg = request.POST.get('pvrimg')
+
+        t=Surveyinfo.objects.filter(Q(survey_id=id))
+        for i in t:
+            status_driv=checkdoc(i.driving_licence_img)
+            setattr(i,"dl_type",status_driv)
+            status_driv=checkdoc(i.full_size_img)
+            setattr(i,"fs_type",status_driv)
+            status_driv=checkdoc(i.college_id_img)
+            setattr(i,"ci_type",status_driv)
+            status_driv=checkdoc(i.tenth_img)
+            setattr(i,"th_type",status_driv)
+            status_driv=checkdoc(i.twelth_img)
+            setattr(i,"tw_type",status_driv)
+            status_driv=checkdoc(i.address_img)
+            setattr(i,"add_type",status_driv)
+            status_driv=checkdoc(i.vaccination_img)
+            setattr(i,"vac_type",status_driv)
+            status_driv=checkdoc(i.police_verification_img)
+            setattr(i,"pvr_type",status_driv)
         
     
            
@@ -299,7 +315,7 @@ def DocumentStatus(request):
         
         
         
-        return render(request, "admin/ShowDocuments.html",{'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        return render(request, "admin/ShowDocuments.html",{'t':t,'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
         
     except  Exception as e:
         print("Error  ",e)

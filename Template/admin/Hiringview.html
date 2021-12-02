@@ -122,10 +122,10 @@
                        <td>
                         <a style="font-size: 15px; font-weight: bold;margin-top: -8px;">
                         {% if i.survey_id.verified_status == 1 %}
-                              <div class="btn btn-success">Verified</div>
+                              <div class="btn btn-success" onclick="changestatus('{{ i.survey_id.verified_status }}')">Verified</div>
                         {% endif %}      
                         {% if i.survey_id.verified_status == 0 %}
-                              <div class="btn btn-danger">Not Verified</div>
+                              <div class="btn btn-danger"  onclick="changestatus('{{ i.survey_id.verified_status }}')">Not Verified</div>
                         {% endif %}
                         </a>    
                     </td>                    
@@ -209,6 +209,20 @@
     </section>
 </div>
 </body>
+<script>
 
+  function changestatus(status)
+  {
+    if(status==1)
+    {
+      i.survey_id.verified_status = 0
+    }
+    if(status==0)
+    {
+      
+    }
+
+  }
+</script>
 </html>
    

@@ -7,6 +7,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://github.com/pipwerks/PDFObject/blob/master/pdfobject.min.js"></script>
 
   <style>
   .top-text{
@@ -34,8 +35,8 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section  class="content-header">
-      <form action="/admin-documentstatus" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
-        <input type='hidden' id='surveyid' name='surveyid' value= '{{id}}' >
+      <form action="/admin-documentstatus/{{id}}" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        
       <button type="submit" class="btn btn-primary" style="float:right; margin-right:20px;margin-top:20px"> Update</button>
      
       <div class="container-fluid">
@@ -74,7 +75,7 @@
                     {% endif %}
                       
                     </td>
-                    
+
                     {% if i.survey_profile_image != None%}
                     <td style=" vertical-align: middle;" >
                       <input style="align-self:center; height:25px; width:29px; " {% if i.profile_img_status == 1 %} checked {% endif%} type="radio" id="pimg" name="pimg" value="1">
@@ -108,8 +109,7 @@
                    <tr>
                     <td> 
                       {% if i.survey_adhar_front_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
-                      {% if i.survey_adhar_front_image != None%}<a data-toggle="modal" data-target="#exampleModal"><img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" width="150" height="150"></a>{% endif %}
-                     
+                      {% if i.survey_adhar_front_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_front_image}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{aadharimgurl}}{{i.survey_adhar_front_image}}')" width="150" height="150"></a>{% endif %}
                     </td>
                     {% if i.survey_adhar_front_image != None%}
                     <td  style=" vertical-align: middle;">
@@ -144,7 +144,9 @@
                    <tr>
                     <td>
                       {% if i.survey_adhar_back_image == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
-                      {% if i.survey_adhar_back_image != None%}<img  src="{{aadharimgurl}}{{i.survey_adhar_back_image}}" width="150" height="150">{% endif %}
+                      {% if i.survey_adhar_back_image != None%}
+                      <img  src="{{aadharimgurl}}{{i.survey_adhar_back_image}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{aadharimgurl}}{{i.survey_adhar_back_image}}')" width="150" height="150">
+                      {% endif %}
                      
                     </td>
                     {% if i.survey_adhar_back_image != None%}
@@ -185,7 +187,7 @@
           
                       {% if i.driving_licence_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.driving_licence_img != None%}
-                      {% if i.dl_type == 1 %} <img  src="{{url}}drivinglicence/{{i.driving_licence_img}}" width="150" height="150">
+                      {% if i.dl_type == 1 %} <img  src="{{url}}drivinglicence/{{i.driving_licence_img}}"  data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}drivinglicence'+'/'+'{{i.driving_licence_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.dl_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -233,7 +235,7 @@
                     <td> 
                       {% if i.full_size_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.full_size_img != None%}
-                      {% if i.fs_type == 1 %} <img  src="{{url}}fullsizephoto/{{i.full_size_img}}" width="150" height="150">
+                      {% if i.fs_type == 1 %} <img  src="{{url}}fullsizephoto/{{i.full_size_img}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}fullsizephoto'+'/'+'{{i.full_size_img}}')"  width="150" height="150">
                       {% endif %}
                       {% if i.fs_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -282,9 +284,9 @@
                 <table class="table table-striped">
                    <tr>
                     <td> 
-                      {% if i.college_id_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
+                      {% if i.college_id_img == None%}<img  src="/static/noimg.png" onclick="showpdf('/static/sql.pdf')"  data-toggle="modal" data-target="#pdfModal" width="150" height="150">{% endif %}
                       {% if i.college_id_img != None%}
-                      {% if i.ci_type == 1 %} <img  src="{{url}}college_id/{{i.college_id_img}}" width="150" height="150">
+                      {% if i.ci_type == 1 %} <img  src="{{url}}college_id/{{i.college_id_img}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}college_id'+'/'+'{{i.college_id_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.ci_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -330,7 +332,7 @@
                     <td> 
                       {% if i.tenth_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.tenth_img != None%}
-                      {% if i.th_type == 1 %} <img  src="{{url}}10th/{{i.tenth_img}}" width="150" height="150">
+                      {% if i.th_type == 1 %} <img  src="{{url}}10th/{{i.tenth_img}}"  data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}10th'+'/'+'{{i.tenth_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.th_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -378,7 +380,7 @@
                     <td> 
                       {% if i.twelth_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.twelth_img != None%}
-                      {% if i.tw_type == 1 %} <img  src="{{url}}12th/{{i.twelth_img}}" width="150" height="150">
+                      {% if i.tw_type == 1 %} <img  src="{{url}}12th/{{i.twelth_img}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}12th'+'/'+'{{i.twelth_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.tw_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -425,7 +427,7 @@
                     <td> 
                       {% if i.address_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.address_img != None%}
-                      {% if i.add_type == 1 %} <img  src="{{url}}address/{{i.address_img}}" width="150" height="150">
+                      {% if i.add_type == 1 %} <img  src="{{url}}address/{{i.address_img}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}address'+'/'+'{{i.address_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.add_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -472,7 +474,7 @@
                     <td> 
                       {% if i.vaccination_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.vaccination_img != None%}
-                      {% if i.vac_type == 1 %} <img  src="{{url}}vaccination/{{i.vaccination_img}}" width="150" height="150">
+                      {% if i.vac_type == 1 %} <img  src="{{url}}vaccination/{{i.vaccination_img}}"   data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}vaccination'+'/'+'{{i.vaccination_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.vac_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -520,7 +522,7 @@
                       {% if i.police_verification_img == None%}<img  src="/static/noimg.png" width="150" height="150">{% endif %}
                       {% if i.police_verification_img != None%}
                       
-                      {% if i.pvr_type == 1 %} <img  src="{{url}}policeverfications/{{i.police_verification_img}}" width="150" height="150">
+                      {% if i.pvr_type == 1 %} <img  src="{{url}}policeverfications/{{i.police_verification_img}}"   data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}policeverfications'+'/'+'{{i.police_verification_img}}')" width="150" height="150">
                       {% endif %}
                       {% if i.pvr_type == 2 %}  <img  src="/static/pdficon.png" width="150" height="150">
                       {% endif %}
@@ -567,29 +569,65 @@
 
   </form>    
 </div>
-          <!-- ------------------location model start here- -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-          
-          >
-            <div class="modal-dialog" role="document">
+          <!-- ------------------Image model start here- -->
+          <div class="modal fade "  id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-lg " role="document">
               <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"style='display:block'  >
   
-
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   
+                  </div>
+                  <center>
                   <div>
 
-                    <img id="oldpic"   style="margin-top:10px; height:150px;"><br><br>
+                    <img id="oldpic"   style="margin-top:10px;width:300px; "><br><br>
+                   
                 </div>
-              
-                          <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         </div>
+              </center>
+                          
                 </div>
                 
               </div>
             </div>
           </div>
-          <!-- -----location model end- -->
+          <!-- -----image model end- -->
+
+
+
+
+            <!-- ------------------pdf model start here- -->
+            <div class="modal fade "  id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+              <div class="modal-dialog modal-lg " role="document">
+                <div class="modal-content">
+                  <div class="modal-header"style='display:block'  >
+    
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     
+                    </div>
+                    <center>
+                    <div>
+                      {% comment %} <iframe src="https://docs.google.com/gview?url=127.0.0.1:8000/static/sql.pdf&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe> {% endcomment %}
+  
+                      {% comment %} <embed src="/static/sql.pdf" frameborder="0" width="100%" height="400px" ><br><br> {% endcomment %}
+                        <iframe
+                        src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://www.svecw.edu.in/Docs%5CITIIBTechIISemLecDBMS.pdf#toolbar=0&scrollbar=0"
+                        frameBorder="0"
+                        scrolling="auto"
+                        height="100%"
+                        width="100%"
+                    ></iframe>
+                  </div>
+                </center>
+                            
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <!-- -----pdf model end- -->
 </body>
 </html>
 
@@ -604,6 +642,10 @@ function showimg(imgurl){
   $('#oldpic').attr('src',imgurl)
 
 
+}
+function showpdf(pdfurl){
+  console.log(pdfurl)
+  {% comment %} PDFObject.embed("127.0.0.1:8000"+pdfurl, "#example1"); {% endcomment %}
 }
 
 </script>  
