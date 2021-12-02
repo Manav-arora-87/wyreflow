@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.urls import reverse
 from django.views.decorators.cache import cache_control
 import math
+from django.core.cache import cache
+
 from decouple import config
 
 
@@ -193,6 +195,7 @@ def SurveyUserView(request,empid):
     try:
         result = request.session['ADMIN']
         print(empid)
+        request.session['id']=empid
         t=Surveyinfo.objects.filter(Q(survey_id__exact=empid)).extra({'state':'select state_name from state where state_id =surveyinfo.assign_state','district':'select dist_name from district where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist','block':'select block_name from block where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block','village':'select village_name from village where state_id =surveyinfo.assign_state and dist_id = surveyinfo.assign_dist and block_id = surveyinfo.assign_block and village_id = surveyinfo.assign_village'})
         res=SurveyHistory.objects.filter(Q(survey_id__exact=empid))
        
@@ -237,10 +240,7 @@ def checkdoc(doc):
     except:
         return 3          
                
-
-def ShowDocuments(request,id):
-    try:
-        result = request.session['ADMIN']
+def surveyor_data(id):
         t=Surveyinfo.objects.filter(Q(survey_id=id))
         for i in t:
             status_driv=checkdoc(i.driving_licence_img)
@@ -259,10 +259,13 @@ def ShowDocuments(request,id):
             setattr(i,"vac_type",status_driv)
             status_driv=checkdoc(i.police_verification_img)
             setattr(i,"pvr_type",status_driv)
-           
+        return t     
 
+def ShowDocuments(request):
+    try:
+        result = request.session['ADMIN']
+        t=surveyor_data(request.session['id'])
 
-        
         
         
         return render(request, "admin/ShowDocuments.html",{'id':id,'t':t,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
@@ -273,49 +276,36 @@ def ShowDocuments(request,id):
         return redirect('admin-login')  
 
 
-def DocumentStatus(request,id):
+def DocumentStatus(request):
     try:
         result = request.session['ADMIN']
         
-        pimg = int(request.POST.get('pimg'))
-        afimg = request.POST.get('afimg')
-        abimg = request.POST.get('abimg')
-        drimg = request.POST.get('drimg')
-        fsimg = request.POST.get('fsimg')
-        ciimg = request.POST.get('ciimg')
-        thimg = request.POST.get('thimg')
-        twimg = request.POST.get('twimg')
-        addimg = request.POST.get('addimg')
-        vacimg = request.POST.get('vacimg')
-        pvrimg = request.POST.get('pvrimg')
+        pimg = (request.POST.get('pimg',None))
+        afimg = (request.POST.get('afimg'))
+        abimg = (request.POST.get('abimg'))
+        drimg = (request.POST.get('drimg'))
+        fsimg = (request.POST.get('fsimg'))
+        ciimg = (request.POST.get('ciimg'))
+        thimg = (request.POST.get('thimg'))
+        twimg =(request.POST.get('twimg'))
+        addimg = (request.POST.get('addimg'))
+        vacimg = (request.POST.get('vacimg'))
+        pvrimg = (request.POST.get('pvrimg'))
+        print(pimg)
+        print(type(pimg))
 
-        t=Surveyinfo.objects.filter(Q(survey_id=id))
-        for i in t:
-            status_driv=checkdoc(i.driving_licence_img)
-            setattr(i,"dl_type",status_driv)
-            status_driv=checkdoc(i.full_size_img)
-            setattr(i,"fs_type",status_driv)
-            status_driv=checkdoc(i.college_id_img)
-            setattr(i,"ci_type",status_driv)
-            status_driv=checkdoc(i.tenth_img)
-            setattr(i,"th_type",status_driv)
-            status_driv=checkdoc(i.twelth_img)
-            setattr(i,"tw_type",status_driv)
-            status_driv=checkdoc(i.address_img)
-            setattr(i,"add_type",status_driv)
-            status_driv=checkdoc(i.vaccination_img)
-            setattr(i,"vac_type",status_driv)
-            status_driv=checkdoc(i.police_verification_img)
-            setattr(i,"pvr_type",status_driv)
-        
+       
+        t8=Surveyinfo.objects.filter(Q(survey_id=request.session['id'])).update(profile_img_status= pimg)
+        t=surveyor_data(request.session['id'])
     
            
 
 
         
-        
-        
-        return render(request, "admin/ShowDocuments.html",{'t':t,'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        cache.delete('127.0.0.1:8000/admin-showdocuments/')
+
+        return redirect('admin-showdocuments')
+        # return render(request, "admin/ShowDocuments.html",{'t':t,'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
         
     except  Exception as e:
         print("Error  ",e)

@@ -28,7 +28,7 @@ urlpatterns = [
     path('fetchallclgname/',views.FetchAllClgName),
     path('searchingdata/<int:id>',views.SearchingData),
     path('admin-surveyuserview/<int:empid>',views.SurveyUserView,name='admin-surveyuserview'),
-    path('admin-showdocuments/<int:id>',views.ShowDocuments,name='admin-showdocuments'),
-    path('admin-documentstatus/<int:id>',views.DocumentStatus,name='admin-documentsstatus'),
+    path('admin-showdocuments/',views.ShowDocuments,name='admin-showdocuments'),
+    path('admin-documentstatus',views.DocumentStatus,name='admin-documentsstatus'),
 
 ]
