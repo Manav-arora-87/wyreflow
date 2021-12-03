@@ -7,6 +7,9 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <style>
   .top-text{
@@ -31,10 +34,11 @@
 
 </head>
 <body>
+  
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section  class="content-header">
-      <form action="/admin-documentstatus" method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+      <form id='doc-form' method="post" enctype="application/x-www-form-urlencoded">{% csrf_token %}
         
       <button type="submit" class="btn btn-primary" style="float:right; margin-right:20px;margin-top:20px"> Update</button>
      
@@ -55,11 +59,9 @@
    
     
      {% for i in t %}
-      {% comment %} <div class="container-fluid">
-        <div class="row"> {% endcomment %}
-          <!-- first row -->
+      
           <div class="row" style="margin-top: 30px;"> 
-             <div class="col-md-19 ml-4" style="width:361px;height:200px">
+             <div class="col-md-19 ml-4" style="width:361px;margin: 5px;">
               <h4 class="top-text">Profile Image</h4>
               <div class="card card-primary card-outline">
               <div class="card-body">
@@ -98,7 +100,7 @@
       </div>
 <!-- /.Adhaar Front image -->
 
-       <div class="col-md-19 ml-4" style="width:361px;height:200px">
+       <div class="col-md-19 ml-4" style="width:361px;margin: 5px;">
         <h4 class="top-text">Aadhaar Front Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -133,7 +135,7 @@
       </div>
 
 <!-- Adhar Back image -->
- <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+ <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">Aadhar Back Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -174,7 +176,7 @@
 
 <!-- Driving Licence image -->
 
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">Driving Licence Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -225,7 +227,7 @@
       <!-- Full Size image -->
       <!-- second row -->
       <div class="row" style="margin-top: 80px;">
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;">
         <h4 class="top-text">Full Size Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -276,7 +278,7 @@
 <!-- College id image -->
 
 
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">College ID Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -322,7 +324,7 @@
 
 
       <!-- 10th Marksheet image -->
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">10th Marksheet Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -370,7 +372,7 @@
 <!-- 12th marksheet image -->
 
 
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">12th Marksheet Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -418,7 +420,7 @@
 <!-- Address image -->
 <!-- third row start -->
 <div class="row " style="margin-top: 80px;">
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">Address Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -465,7 +467,7 @@
 
 
 <!-- Vaccination image -->
-      <div class="col-md-19 ml-4" style="width:361px;height:200px;">
+      <div class="col-md-19 ml-4" style="width:361px;margin: 5px;;">
         <h4 class="top-text">Vaccination Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -512,7 +514,7 @@
 
 <!-- Police Verification image -->
 
-      <div class="col-md-19 ml-4 " style="width:361px;height:200px; ">
+      <div class="col-md-19 ml-4 " style="width:361px;margin: 5px;; ">
         <h4 class="top-text">Police Verification Image</h4>
        <div class="card card-primary card-outline">
               <div class="card-body">
@@ -567,8 +569,76 @@
               
          </div> {% endcomment %}
 
-         {% endfor %}
+         
     
+
+ <!-- semester  row start -->
+ <div class="row" style="margin-top: 80px;">
+  <div class="col-md-19 ml-4" >
+    <h4 class="top-text">Semester Image</h4>
+   <div class="card card-primary card-outline">
+    
+     
+          <div class="card-body">
+            <div class="row">
+             
+              <div class="col-md-20">
+                
+            <table class="table table-striped">
+               <tr>
+                {% if semlength == 0 %} <img  src='/static/noimg.png' width="351" height="200"> {% endif %}
+                {% for j in semimg %}
+                <td> 
+
+                  
+                  {% if j.img_name != None%}
+                  {% if j.sem_type == 1 %} <img  src="{{url}}semester/{{j.img_name}}" data-toggle="modal" data-target="#exampleModal"   onclick="showimg('{{url}}semester'+'/'+'{{j.img_name}}')"  width="150" height="150">
+                  {% endif %}
+                  {% if j.sem_type == 2 %}  <img  src="/static/pdficon.png"  data-toggle="modal" data-target="#pdfModal"   onclick="showpdf('{{url}}semester'+'/'+'{{j.img_name}}')" width="150" height="150">
+                  {% endif %}
+                  {% if j.sem_type == 3 %}   <img  src="/static/invalid.png" width="150" height="150">
+                  {% endif %}
+                  
+                  {% endif %}
+                 
+                
+                </td>
+                {% endfor %}
+                {% if semlength != 0 %}
+                <td style=" vertical-align: middle;" >
+                  <input style="align-self:center; height:25px; width:29px; " type="radio" {% if i.semester_img_status == 1 %} checked {% endif%} id="fsimg" name="semesterimg" value="1">
+                  <label style="align-self:center; font-size:20px;" for="html">Verified</label><br>
+                  <input  style="align-self:center;height:25px; width:29px;" type="radio" {% if i.semester_img_status == 2 %} checked {% endif%} id="fsimg" name="semesterimg" value="2">
+                  <label style="align-self:center;font-size:20px;" for="css">Rejected</label><br>
+                  <input style="align-self:center;height:25px; width:29px;" type="radio" {% if i.semester_img_status == 0 %} checked {% endif%} id="fsimg" name="semesterimg" value="0">
+                  <label style="align-self:center;font-size:20px;" for="javascript">Pending</label>
+                   </td>
+                   {% endif %}
+              </tr>
+             
+              
+           
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<!-- semester row end  -->
+{% endfor %}
 
   </form>    
 </div>
@@ -632,6 +702,28 @@
 
 <script>
 
+$("#doc-form").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // make POST ajax call
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'admin-update_surveyor_doc' %}",
+            data: serializedData,
+            success: function (response) {
+              // console.log(response)
+              alert("Status update successfully")
+
+              
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["responseJSON"]["error"]);
+            }
+        })
+    })
  
   
 function showimg(imgurl){
@@ -643,7 +735,7 @@ function showimg(imgurl){
 function showpdf(pdfurl){
   console.log(pdfurl)
 
-  $('#pdf').attr('data',pdfurl)
+  $('#pdf').attr('data',pdfurl+'#toolbar=0')
  
   
 }

@@ -1,12 +1,14 @@
 import json
 from django.shortcuts import redirect
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
+
 # Create your views here.
 import os
 import bcrypt
 import datetime
 from django.shortcuts import render
-from .models import Adminlogins, SurveyHistory
+from .models import Adminlogins, SemesterImg, SurveyHistory
 from .models import Surveyinfo
 from .models import SurveyLogin
 from adminweb.models import College
@@ -242,6 +244,7 @@ def checkdoc(doc):
                
 def surveyor_data(id):
         t=Surveyinfo.objects.filter(Q(survey_id=id))
+        semimg=SemesterImg.objects.filter(survey_id=id)
         for i in t:
             status_driv=checkdoc(i.driving_licence_img)
             setattr(i,"dl_type",status_driv)
@@ -259,16 +262,21 @@ def surveyor_data(id):
             setattr(i,"vac_type",status_driv)
             status_driv=checkdoc(i.police_verification_img)
             setattr(i,"pvr_type",status_driv)
-        return t     
+        for i in semimg:
+            status_driv=checkdoc(i.img_name)
+            setattr(i,"sem_type",status_driv)
+
+        return t,semimg     
 
 def ShowDocuments(request):
     try:
         result = request.session['ADMIN']
-        t=surveyor_data(request.session['id'])
-
+        t,semimg=surveyor_data(request.session['id'])
+        semlength=len(semimg)
         
         
-        return render(request, "admin/ShowDocuments.html",{'id':id,'t':t,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
+        
+        return render(request, "admin/ShowDocuments.html",{'semlength':semlength,'id':id,'t':t,'semimg':semimg, 'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
         
     except  Exception as e:
         print("Error",e)
@@ -279,36 +287,26 @@ def ShowDocuments(request):
 def DocumentStatus(request):
     try:
         result = request.session['ADMIN']
-        
-        pimg = (request.POST.get('pimg',None))
-        afimg = (request.POST.get('afimg'))
-        abimg = (request.POST.get('abimg'))
-        drimg = (request.POST.get('drimg'))
-        fsimg = (request.POST.get('fsimg'))
-        ciimg = (request.POST.get('ciimg'))
-        thimg = (request.POST.get('thimg'))
-        twimg =(request.POST.get('twimg'))
-        addimg = (request.POST.get('addimg'))
-        vacimg = (request.POST.get('vacimg'))
-        pvrimg = (request.POST.get('pvrimg'))
-        print(pimg)
-        print(type(pimg))
+        if request.is_ajax and request.method == "POST":
+            pimg = request.POST.get('pimg',None)
+            afimg = request.POST.get('afimg',None)
+            abimg = request.POST.get('abimg',None)
+            drimg = request.POST.get('drimg',None)
+            fsimg = request.POST.get('fsimg',None)
+            ciimg = request.POST.get('ciimg',None)
+            thimg = request.POST.get('thimg',None)
+            twimg =request.POST.get('twimg',None)
+            addimg = request.POST.get('addimg',None)
+            vacimg = request.POST.get('vacimg',None)
+            pvrimg = request.POST.get('pvrimg',None)
+            semesterimg = request.POST.get('semesterimg',None)
+            t8=Surveyinfo.objects.filter(Q(survey_id=request.session['id'])).update(semester_img_status= semesterimg,profile_img_status= pimg,aadhar_front_uri_status=afimg,aadhar_back_uri_status=abimg,driving_licence_status=drimg,full_size_img_status=fsimg,college_id_img_status=ciimg,tenth_img_status=thimg,twelth_img_status=twimg,address_img_status=addimg,vaccination_img_status=vacimg,police_verification_img_status=pvrimg)
 
-       
-        t8=Surveyinfo.objects.filter(Q(survey_id=request.session['id'])).update(profile_img_status= pimg)
-        t=surveyor_data(request.session['id'])
-    
-           
+            return JsonResponse({"status": "done"}, status=200)
 
-
-        
-        cache.delete('127.0.0.1:8000/admin-showdocuments/')
-
-        return redirect('admin-showdocuments')
-        # return render(request, "admin/ShowDocuments.html",{'t':t,'id':id,'profileimgurl':config("imgurl"),'aadharimgurl':config("aadhar"),'url':config('url')})
-        
+    # some error occured
+        return JsonResponse({"error": "Status not upadated"}, status=400)
     except  Exception as e:
-        print("Error  ",e)
-        Logout(request) 
-        return redirect('admin-login')  
+            return JsonResponse({"error": "Status not upadated "}, status=400)
+ 
 

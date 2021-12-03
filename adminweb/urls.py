@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from adminweb import  views
+# r
 
 urlpatterns = [
     # path('adminweb/', adminweb.site.urls),
@@ -29,6 +30,6 @@ urlpatterns = [
     path('searchingdata/<int:id>',views.SearchingData),
     path('admin-surveyuserview/<int:empid>',views.SurveyUserView,name='admin-surveyuserview'),
     path('admin-showdocuments/',views.ShowDocuments,name='admin-showdocuments'),
-    path('admin-documentstatus',views.DocumentStatus,name='admin-documentsstatus'),
+    path('admin-update_surveyor_doc',views.DocumentStatus,name='admin-update_surveyor_doc'),
 
 ]
