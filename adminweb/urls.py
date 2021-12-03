@@ -31,5 +31,7 @@ urlpatterns = [
     path('admin-surveyuserview/<int:empid>',views.SurveyUserView,name='admin-surveyuserview'),
     path('admin-showdocuments/',views.ShowDocuments,name='admin-showdocuments'),
     path('admin-update_surveyor_doc',views.DocumentStatus,name='admin-update_surveyor_doc'),
+    path('admin-update_surveyor_verfications',views.update_verfication,name='admin-update_surveyor_verfications'),
+    path('fetchallstates/',views.fetchallstates),
 
 ]

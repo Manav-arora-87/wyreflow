@@ -8,7 +8,7 @@ $(document).ready(function(){
        console.log($("#cid").val())
        if(item.id==$("#cid").val())
         {
-        
+            
             $('#clgname').append($('<option>').text(item.name).val(item.id))
             $('#clgname').attr("selected","selected");     
         }
@@ -19,4 +19,20 @@ $(document).ready(function(){
     
        })
     })
+
+
+
+
+    $.getJSON("/fetchallstates",{ajax:true},function(data){
+        
+       
+        $.each(data,function(index,item){
+        /*$('#states').empty()*/
+        alert(item.state_name)
+        $('#states').append($('<option>').text(item.state_name).val(item.state_id))
+     
+        })
+     })
+
+
 })
