@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="/static/javascript/project.js"></script>
+  
 <style>
   .top-text{
     text-align: center;
@@ -134,7 +134,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
-                <form  action="" method="post" enctype="multipart/form-data">
+                <form id='setlocation' method="post" enctype="multipart/form-data">{%csrf_token %}
                  
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -144,9 +144,7 @@
                       <option selected disabled>-State-</option>
                       {% for state in states %}
                           <option value="{{state.state_id }}" > {{state.state_name}}</option>
-                          <!-- <option value="1">Andaman and Nicobar</option>
-                          <option value="2">Andhra Pradesh</option>
-                          <option value="3">Punjab</option> -->
+                         
                           {% endfor %}
                                     
                     </select> 
@@ -155,7 +153,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">District</label>
                     </div>
-                    <select class="custom-select" name="assign_dist" id="district"> 
+                    <select class="custom-select" name="district" id="district"> 
                       <option>-District-</option>
                     </select>
                 </div>
@@ -163,7 +161,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Block</label>
                     </div>
-                    <select class="custom-select" name="assign_block" id="block"> 
+                    <select class="custom-select" name="block" id="block"> 
                       <option>-Block-</option>
                     </select>
                 </div>
@@ -171,7 +169,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Village</label>
                     </div>
-                    <select class="custom-select" name="assign_village" id="village">
+                    <select class="custom-select" name="village" id="village">
                       <option>-Village-</option>
                     </select>
                 </div>
@@ -565,56 +563,103 @@
       <!-- /.container-fluid -->
     </section>
 </div>
-</body>
-<script type="text/javascript" >
-  function change_status(status, id) {
-    $.ajax({
-      type: 'POST',
-      url: "{% url 'admin-update_surveyor_verfications' %}",
-      data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'data': status, 'regid': id },
-      csrfmiddlewaretoken: '{{ csrf_token }}',
-      success: function (response) {
-        $(document).ajaxStop(function () {
-          window.location.reload();
-        });
-
-
-      },
-      error: function (response) {
-        // alert the error if any error occured
-        // alert(response["responseJSON"]["error"]);
-      }
-    })
-
-
-  }
-
-</script>
 <script>
+  
   $('#states').change(function () {
     var cid = $(this).val();
+
     if (cid) {
       $.ajax({
         type: "POST",
         url: "{% url 'fatchalldistricts' %}",
-        data:{'id':cid}
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'id': cid, },
+      csrfmiddlewaretoken: '{{ csrf_token }}',
         success: function (res) {
-          console.log(res)
-          // if (res) {
-          //   $("#state").empty();
-          //   $("#block").empty();
-          //   $("#village").empty();
-          //   $("#distric").append('<option>Select District</option>');
-          //   $.each(res, function (key, value) {
-          //     $("#distric").append('<option value="' + key + '">' + value + '</option>');
-          //   });
-          // }
+           if (res) {
+             $("#state").empty();
+             $("#district").empty();
+             $("#block").empty();
+             $("#village").empty();
+          
+             $.each(res.data, function (key, value) {
+               //console.log(key)
+               $("#district").append('<option value="' + value.dist_id + '">' + value.dist_name + '</option>');
+             });
+           }
         
         }
 
       });
     }
   });
+
+
+
+
+
+  $('#district').change(function () {
+    var cid = $(this).val();
+    var sid =$('#states').val()
+    
+    if (cid) {
+      $.ajax({
+        type: "POST",
+        url: "{% url 'fatchallblocks' %}",
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'id': cid,'sid':sid },
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+        success: function (res) {
+           if (res) {
+            
+            $("#block").empty();
+            $("#village").empty();
+            $("#block").append('<option>Select Block</option>');
+             
+          
+             $.each(res.data, function (key, value) {
+               //console.log(key)
+               $("#block").append('<option value="' + value.block_id + '">' + value.block_name + '</option>');
+             });
+           }
+        
+        }
+
+      });
+    }
+  });
+
+
+  $('#block').change(function () {
+    var cid = $(this).val();
+    var sid =$('#states').val()
+    var did =$('#district').val()
+    if (cid) {
+      $.ajax({
+        type: "POST",
+        url: "{% url 'fatchallvillages' %}",
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'id': cid,'sid':sid ,'did':did},
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+        success: function (res) {
+           if (res) {
+            
+            $("#village").empty();
+            $("#village").append('<option>Select village</option>');
+             
+          
+             $.each(res.data, function (key, value) {
+               //console.log(key)
+               $("#village").append('<option value="' + value.village_id + '">' + value.village_name + '</option>');
+             });
+           }
+        
+        }
+
+      });
+    }
+  });
+
+
+
+
   {% comment %} $('#distric').change(function () {
     var sid = $(this).val();
     if (sid) {
@@ -655,5 +700,62 @@
     }
   }); {% endcomment %}
 
+  $("#setlocation").submit(function (e) {
+    
+    // preventing from page reload and default actions
+    e.preventDefault();
+    
+    // serialize the data for sending the form data.
+    var serializedData = $(this).serialize();
+    
+    // make POST ajax call
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'setsurveylocation' %}",
+        data: serializedData,
+        
+        success: function (response) {
+          // console.log(response)
+          alert("Location update successfully")
+          location.reload();
+
+          
+        },
+        error: function (response) {
+            // alert the error if any error occured
+            alert(response["responseJSON"]["error"]);
+        }
+    })
+})
+
+
+
+
 </script>
+</body>
+<script type="text/javascript" >
+  function change_status(status, id) {
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'admin-update_surveyor_verfications' %}",
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}', 'data': status, 'regid': id },
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      success: function (response) {
+        $(document).ajaxStop(function () {
+          window.location.reload();
+        });
+
+
+      },
+      error: function (response) {
+        // alert the error if any error occured
+        // alert(response["responseJSON"]["error"]);
+      }
+    })
+
+
+  }
+
+</script>
+
 </html>

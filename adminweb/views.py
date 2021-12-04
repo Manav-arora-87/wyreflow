@@ -317,7 +317,7 @@ def update_verfication(request):
 def fetchallstates():
     try:
        t=State.objects.all().values("state_id","state_name")
-       print(t)
+    
        return t
        
        #return JsonResponse(t,safe=False)
@@ -329,25 +329,50 @@ def fetchallstates():
 def fetchalldistricts(request):
     try:
      if request.is_ajax and request.method == "POST":
-         print(request.POST['id'])
-    #    t=District.objects.filter(Q(state_id = id))
-    #    return JsonResponse(t,safe=False)
+         t=District.objects.filter(Q(state_id = request.POST['id'])).values("dist_id",'dist_name')
+         
+         return JsonResponse({"data": list(t)},safe=False)
     except Exception as e:
-      print(e)
-      return JsonResponse([],safe=False)
+        print(e)
+        return JsonResponse([],safe=False)
 
 def fetchallblocks(request):
+    
     try:
-       t=Block.objects.all()
-       return JsonResponse(t,safe=False)
+        if request.is_ajax and request.method == "POST":
+            print(request.POST['id'])
+            t=Block.objects.filter(Q(state_id =request.POST['sid'] )).filter(Q(dist_id = request.POST['id'])).values("block_id","block_name")
+            return JsonResponse({"data": list(t)},safe=False)
     except Exception as e:
-      print(e)
+      print("Error   ",e)
       return JsonResponse([],safe=False)
 
 def fetchallvillages(request):
     try:
-       t=Village.objects.all()
-       return JsonResponse(t,safe=False)
+       t=Village.objects.filter(Q(state_id =request.POST['sid'] )).filter(Q(dist_id = request.POST['did'])).filter(Q(block_id = request.POST['id'])).values("village_id","village_name")
+       print(t)
+       return JsonResponse({"data": list(t)},safe=False)
     except Exception as e:
       print(e)
       return JsonResponse([],safe=False)
+
+def setsurveylocation(request):
+    try:
+        
+        result = request.session['ADMIN']
+        if request.is_ajax and request.method == "POST":
+            # print(request.POST['states'])    
+            # print(request.POST['district'])
+            # print(request.POST['block'])
+            # print(request.POST['village'])
+            # print(request.session['id'])
+           
+            Surveyinfo.objects.filter(Q(survey_id=request.session['id'])).update(assign_state =request.POST['states'],assign_dist =request.POST['district'], assign_block= request.POST['block'], assign_village=request.POST['village'])  
+                   
+            return JsonResponse({"status": "done"}, status=200)
+
+        return JsonResponse({"error": "Status not upadated"}, status=400)
+    except  Exception as e:
+         print(e)
+         return JsonResponse({"error": "Status not upadated "}, status=400)
+ 

@@ -33,4 +33,8 @@ urlpatterns = [
     path('admin-update_surveyor_doc',views.DocumentStatus,name='admin-update_surveyor_doc'),
     path('admin-update_surveyor_verfications',views.update_verfication,name='admin-update_surveyor_verfications'),
     path('fetchalldistricts',views.fetchalldistricts,name='fatchalldistricts'),
+    path('fetchallblocks',views.fetchallblocks,name='fatchallblocks'),
+    path('fetchallvillages',views.fetchallvillages,name='fatchallvillages'),
+    path('setsurveylocation',views.setsurveylocation,name='setsurveylocation'),
+
 ]
