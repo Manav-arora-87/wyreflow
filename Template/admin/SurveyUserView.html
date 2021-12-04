@@ -141,7 +141,13 @@
                         <label class="input-group-text">State</label>
                     </div>
                     <select class="custom-select"  name="states" id="states" required> 
-                      <option>-State-</option>
+                      <option selected disabled>-State-</option>
+                      {% for state in states %}
+                          <option value="{{state.state_id }}" > {{state.state_name}}</option>
+                          <!-- <option value="1">Andaman and Nicobar</option>
+                          <option value="2">Andhra Pradesh</option>
+                          <option value="3">Punjab</option> -->
+                          {% endfor %}
                                     
                     </select> 
                 </div>
@@ -562,7 +568,6 @@
 </body>
 <script type="text/javascript" >
   function change_status(status, id) {
-     console.log("sd")
     $.ajax({
       type: 'POST',
       url: "{% url 'admin-update_surveyor_verfications' %}",
@@ -583,6 +588,72 @@
 
 
   }
+
+</script>
+<script>
+  $('#states').change(function () {
+    var cid = $(this).val();
+    if (cid) {
+      $.ajax({
+        type: "POST",
+        url: "{% url 'fatchalldistricts' %}",
+        data:{'id':cid}
+        success: function (res) {
+          console.log(res)
+          // if (res) {
+          //   $("#state").empty();
+          //   $("#block").empty();
+          //   $("#village").empty();
+          //   $("#distric").append('<option>Select District</option>');
+          //   $.each(res, function (key, value) {
+          //     $("#distric").append('<option value="' + key + '">' + value + '</option>');
+          //   });
+          // }
+        
+        }
+
+      });
+    }
+  });
+  {% comment %} $('#distric').change(function () {
+    var sid = $(this).val();
+    if (sid) {
+      $.ajax({
+        type: "get",
+        /*url: "{{ url('/') }}/admin-survey-user-block/" + sid,*/
+        success: function (res) {
+          if (res) {
+            $("#block").empty();
+            $("#block").append('<option>Select Block</option>');
+            $.each(res, function (key, value) {
+              $("#block").append('<option value="' + key + '">' + value + '</option>');
+            });
+          }
+        }
+
+      });
+    }
+  });
+
+  $('#block').change(function () {
+    var vid = $(this).val();
+    if (vid) {
+      $.ajax({
+        type: "get",
+        /*url: "{{ url('/') }}/admin-survey-user-village/" + vid,*/
+        success: function (res) {
+          if (res) {
+            $("#village").empty();
+            $("#village").append('<option></option>');
+            $.each(res, function (key, value) {
+              $("#village").append('<option value="' + key + '">' + value + '</option>');
+            });
+          }
+        }
+
+      });
+    }
+  }); {% endcomment %}
 
 </script>
 </html>

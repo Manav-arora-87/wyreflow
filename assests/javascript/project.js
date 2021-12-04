@@ -23,16 +23,7 @@ $(document).ready(function(){
 
 
 
-    $.getJSON("/fetchallstates",{ajax:true},function(data){
-        
-       
-        $.each(data,function(index,item){
-        /*$('#states').empty()*/
-        alert(item.state_name)
-        $('#states').append($('<option>').text(item.state_name).val(item.state_id))
-     
-        })
-     })
+   
 
 
 })

@@ -208,10 +208,13 @@ def SurveyUserView(request,empid):
                     h="0"+h
                 temp=h+":"+m+":"+se
                 setattr(i,"total_time",temp) 
+        state=fetchallstates()    
+        
 
-        return render(request, "admin/SurveyUserView.html",{'id':empid,'t':t,'res':res,'d':d,'imgurl':config("imgurl")})
+        return render(request, "admin/SurveyUserView.html",{'id':empid,'t':t,'res':res,'d':d,'imgurl':config("imgurl"),'states':state})
     except  Exception as e:
-        Logout(request) 
+        print(e)
+        # Logout(request) 
         return redirect('admin-login')
 
 
@@ -311,22 +314,24 @@ def update_verfication(request):
             return JsonResponse({"error": "Status not upadated "}, status=400)
  
 
-def fetchallstates(request):
+def fetchallstates():
     try:
        t=State.objects.all().values("state_id","state_name")
        print(t)
-       return JsonResponse({"data": list(t) },safe=False)
+       return t
        
        #return JsonResponse(t,safe=False)
     except Exception as e:
       print("Errrrrrr",e)
-      return JsonResponse([],safe=False)
+      return []
 
 
 def fetchalldistricts(request):
     try:
-       t=District.objects.all()
-       return JsonResponse(t,safe=False)
+     if request.is_ajax and request.method == "POST":
+         print(request.POST['id'])
+    #    t=District.objects.filter(Q(state_id = id))
+    #    return JsonResponse(t,safe=False)
     except Exception as e:
       print(e)
       return JsonResponse([],safe=False)
