@@ -364,7 +364,7 @@ def setsurveylocation(request):
             # print(request.POST['states'])    
             # print(request.POST['district'])
             # print(request.POST['block'])
-            # print(request.POST['village'])
+           # print(request.POST['village'])
             # print(request.session['id'])
            
             Surveyinfo.objects.filter(Q(survey_id=request.session['id'])).update(assign_state =request.POST['states'],assign_dist =request.POST['district'], assign_block= request.POST['block'], assign_village=request.POST['village'])  

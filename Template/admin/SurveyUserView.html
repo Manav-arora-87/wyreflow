@@ -153,16 +153,16 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">District</label>
                     </div>
-                    <select class="custom-select" name="district" id="district"> 
-                      <option>-District-</option>
+                    <select class="custom-select"  name="district" id="district"> 
+                      <option >-District-</option>
                     </select>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Block</label>
                     </div>
-                    <select class="custom-select" name="block" id="block"> 
-                      <option>-Block-</option>
+                    <select class="custom-select"  name="block" id="block"> 
+                      <option >-Block-</option>
                     </select>
                 </div>
                   <div class="input-group mb-3">
@@ -170,7 +170,7 @@
                         <label class="input-group-text" for="inputGroupSelect01">Village</label>
                     </div>
                     <select class="custom-select" name="village" id="village">
-                      <option>-Village-</option>
+                      <option value='None'>-Village-</option>
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -612,7 +612,7 @@
             
             $("#block").empty();
             $("#village").empty();
-            $("#block").append('<option>Select Block</option>');
+            $("#block").append('<option value="None">Select Block</option>');
              
           
              $.each(res.data, function (key, value) {
@@ -642,7 +642,7 @@
            if (res) {
             
             $("#village").empty();
-            $("#village").append('<option>Select village</option>');
+            $("#village").append('<option value="None" >Select village</option>');
              
           
              $.each(res.data, function (key, value) {
@@ -716,8 +716,12 @@
         
         success: function (response) {
           // console.log(response)
-          alert("Location update successfully")
           location.reload();
+          setTimeout(()=>{
+            alert("Location update successfully")
+
+          },10)
+          
 
           
         },
